@@ -1,0 +1,34 @@
+$role = Auth::user()->roles[0]->name;
+        switch ($role) {
+            case 'admin':
+                return route('dashboard.admin');
+                break;
+            case 'super_admin':
+                return route('dashboard.super_admin');
+                break;
+            case 'santri_baru':
+                return route('dashboard.santri_baru');
+                break;
+            case 'santri_aktif':
+                return route('dashboard.santri_aktif');
+                break;
+            case 'alumni':
+                return route('dashboard.alumni');
+                break;
+            case 'admin_madin':
+                return route('dashboard.admin_madin');
+                break;
+            case 'hankamtib':
+                return route('dashboard.hankamtib');
+                break;
+            case 'bendahara':
+                return route('dashboard.bendahara');
+                break;
+            case 'asatidz':
+                return route('dashboard.asatidz');
+                break;
+
+            default:
+                return route('dashboard.tamu');
+                break;
+        }

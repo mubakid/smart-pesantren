@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $role = Auth::user()->roles[0]->name;
+        $role = Auth::user()->roles->pluck('name')[0] ?? 'tamu';
         switch ($role) {
             case 'admin':
                 return inertia('Dashboard/admin');
@@ -38,7 +38,6 @@ class HomeController extends Controller
             case 'asatidz':
                 return inertia('Dashboard/asatidz');
                 break;
-
             default:
                 return inertia('Dashboard/tamu');
                 break;

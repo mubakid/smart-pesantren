@@ -2,7 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -36,8 +38,13 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $tgl_masehi = Carbon::now();
+        $get = 'http://api.aladhan.com/v1/gToH?date=' . $tgl_masehi->format('d-m-Y');
+        $a = Http::get($get);
+        $tgl_hijriah = $a['data']['hijri'];
         return array_merge(parent::share($request), [
-            //
+            'tgl_hijriah' => $tgl_hijriah,
+            'tgl_masehi' => $tgl_masehi->translatedFormat('l, d M Y |')
         ]);
     }
 }

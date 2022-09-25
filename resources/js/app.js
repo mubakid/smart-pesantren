@@ -3,16 +3,18 @@ import { createApp, h } from "vue";
 import { createInertiaApp } from "@inertiajs/inertia-vue3";
 import { Head } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
+import PerfectScrollbar from "vue3-perfect-scrollbar";
+import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
 // import "mdb-vue-ui-kit/css/mdb.min.css";
-import $ from "jquery";
 
+// import {metisMenu} from "../../public/assets/plugins/metismenu/js/metisMenu.min.js";
 InertiaProgress.init({
     // The delay after which the progress bar will
     // appear during navigation, in milliseconds.
     delay: 10,
 
     // The color of the progress bar.
-    color: "green",
+    color: "white",
 
     // Whether to include the default NProgress styles.
     includeCSS: true,
@@ -21,7 +23,7 @@ InertiaProgress.init({
     showSpinner: true,
 });
 createInertiaApp({
-    title: (title) => `${title} ~ SIP.MUBAKID`,
+    title: (title) => `${title} - SIP.MUBAKID`,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,
@@ -30,6 +32,7 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
+            .use(PerfectScrollbar)
             .component("Head", Head)
             .mixin({ methods: { route } })
             .mount(el);

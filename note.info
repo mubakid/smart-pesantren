@@ -1,1 +1,35 @@
-roles = admin, superadmin, bendahara, hankamtib, admin_madin, santri_baru, santri_aktif, alumni, asatidz, bendahara_daerah
+Tugas secara umum,
+    super_admin :
+        - kelola nama aplikasi, 
+        - kelola role and permission,
+        - kelola role can
+        - kelola user
+        - kelola reset password
+        - kelola server wa
+
+    admin :
+        - dapat mengecek semua role dibawah admin
+        - kelola Daerah
+        - kelola asrama
+        - Kelola jenis perizinan
+        - kelola jenis pelanggaran
+        - kelola penerimaan santri baru
+
+
+    sekretaris :
+        - Reg santri
+        - Reg kamar
+        - Mutasi kamar
+        - Boyong
+        - Drop Out
+        - Perizinan
+        - Pelanggaran
+        - Print
+            - KTS (bulk download)
+            - Kartu Wali (bulk download)
+            - Formulir (per santri, per tanggal)
+        - Laporan
+            - Registrasi 
+            - Mutasi
+            - Perizinan
+            - Pelanggaran

@@ -18,10 +18,13 @@ class HomeController extends Controller
                 case 'super_admin':
                     return inertia('Dashboard/super_admin');
                     break;
+                case 'tamu':
+                    return inertia('Dashboard/tamu');
+                    break;
                 case 'santri_baru':
                     return inertia('Dashboard/santri_baru');
                     break;
-                case 'santri_aktif':
+                case 'santri':
                     return inertia('Dashboard/santri_aktif');
                     break;
                 case 'alumni':

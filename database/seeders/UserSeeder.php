@@ -24,8 +24,9 @@ class UserSeeder extends Seeder
             ['name' => 'bendahara', 'guard_name' => 'web'],
             ['name' => 'hankamtib', 'guard_name' => 'web'],
             ['name' => 'madin', 'guard_name' => 'web'],
+            ['name' => 'tamu', 'guard_name' => 'web'],
             ['name' => 'santri_baru', 'guard_name' => 'web'],
-            ['name' => 'santri_aktif', 'guard_name' => 'web'],
+            ['name' => 'santri', 'guard_name' => 'web'],
             ['name' => 'alumni', 'guard_name' => 'web'],
             ['name' => 'asatidz', 'guard_name' => 'web'],
         ]);

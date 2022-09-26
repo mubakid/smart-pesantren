@@ -26,6 +26,10 @@ class StoreStudentRequest extends FormRequest
         return [
             'nama' => 'required',
             'nik' => 'required',
+            'jenis_kelamin' => 'required',
+            'tempat_lahir' => 'required',
+            'tanggal_lahir' => 'required',
+            'kota' => 'required',
         ];
     }
 }

@@ -42,7 +42,7 @@ class StudentController extends Controller
         $data['user_id'] = Auth::user()->id;
         Student::create($data);
         sleep(3);
-        return Redirect::route('/ssd');
+        return Redirect::route('home');
     }
 
     /**

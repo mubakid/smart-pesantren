@@ -47,4 +47,8 @@ class HomeController extends Controller
             return redirect('/');
         }
     }
+    public function try(Request $req)
+    {
+        dd($req->all());
+    }
 }

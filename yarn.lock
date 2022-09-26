@@ -645,6 +645,11 @@
   "resolved" "https://registry.npmjs.org/entities/-/entities-2.2.0.tgz"
   "version" "2.2.0"
 
+"epic-spinners@^1.1.0":
+  "integrity" "sha512-nFyHmFuBFO6LpT37Xu68lQqKDYK50gXoZ6Yj/mpoS1Uslku0YkMtAGDzH8nbeFSiifAIoT1rUDB3S7e/ifnnxg=="
+  "resolved" "https://registry.npmjs.org/epic-spinners/-/epic-spinners-1.1.0.tgz"
+  "version" "1.1.0"
+
 "error-ex@^1.3.1":
   "integrity" "sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g=="
   "resolved" "https://registry.npmjs.org/error-ex/-/error-ex-1.3.2.tgz"
@@ -1899,6 +1904,16 @@
   optionalDependencies:
     "fsevents" "~2.3.2"
 
+"vue-loading-button@^0.2.0":
+  "integrity" "sha512-HjlNzS2deIaXGr7cZU/J/SiaZfA6OvJC+vzujTohUCs0cF+6G9p4SfTquT4watDFl5m3yO4OBEaxhE99JQLBNA=="
+  "resolved" "https://registry.npmjs.org/vue-loading-button/-/vue-loading-button-0.2.0.tgz"
+  "version" "0.2.0"
+
+"vue-loading-overlay@^5.0.3":
+  "integrity" "sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ=="
+  "resolved" "https://registry.npmjs.org/vue-loading-overlay/-/vue-loading-overlay-5.0.3.tgz"
+  "version" "5.0.3"
+
 "vue-step-wizard@^0.1.17":
   "integrity" "sha512-elwb5iRUrLn7WOHavRCf3KfPfcMYhsL1Hl7BfAmInpHmgnWNkoy1NDRegPTBC4L327Fmn6TzdSSD+pIziPP4VQ=="
   "resolved" "https://registry.npmjs.org/vue-step-wizard/-/vue-step-wizard-0.1.17.tgz"
@@ -1908,15 +1923,7 @@
     "vue" "^2.6.10"
     "vuelidate" "^0.7.5"
 
-"vue@^2.6.10":
-  "integrity" "sha512-HmFC70qarSHPXcKtW8U8fgIkF6JGvjEmDiVInTkKZP0gIlEPhlVlcJJLkdGIDiNkIeA2zJPQTWJUI4iWe+AVfg=="
-  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.10.tgz"
-  "version" "2.7.10"
-  dependencies:
-    "@vue/compiler-sfc" "2.7.10"
-    "csstype" "^3.1.0"
-
-"vue@^3.0.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.39":
+"vue@^2.5.2", "vue@^3.0.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.39":
   "integrity" "sha512-tRkguhRTw9NmIPXhzk21YFBqXHT2t+6C6wPOgQ50fcFVWnPdetmRqbmySRHznrYjX2E47u0cGlKGcxKZJ38R/g=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.39.tgz"
   "version" "3.2.39"
@@ -1926,6 +1933,14 @@
     "@vue/runtime-dom" "3.2.39"
     "@vue/server-renderer" "3.2.39"
     "@vue/shared" "3.2.39"
+
+"vue@^2.6.10":
+  "integrity" "sha512-HmFC70qarSHPXcKtW8U8fgIkF6JGvjEmDiVInTkKZP0gIlEPhlVlcJJLkdGIDiNkIeA2zJPQTWJUI4iWe+AVfg=="
+  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.10.tgz"
+  "version" "2.7.10"
+  dependencies:
+    "@vue/compiler-sfc" "2.7.10"
+    "csstype" "^3.1.0"
 
 "vue3-perfect-scrollbar@^1.6.0":
   "integrity" "sha512-bH8rk8a5gH0lh/1YGdQCfSpQtrUcBBQ2bAWCt3I1zZYlNDCm3lL/SWzhzv+aN/OjMSqYrslkm1O/ml8jTUZpTg=="

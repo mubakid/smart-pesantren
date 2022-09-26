@@ -27,6 +27,7 @@
         "mdb-vue-ui-kit": "^3.0.0",
         "metismenu": "^3.0.7",
         "vue": "^3.2.36",
+        "vue-step-wizard": "^0.1.17",
         "vue3-perfect-scrollbar": "^1.6.0"
     }
 }

@@ -9,38 +9,42 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $role = Auth::user()->roles->pluck('name')[0] ?? 'tamu';
-        switch ($role) {
-            case 'admin':
-                return inertia('Dashboard/admin');
-                break;
-            case 'super_admin':
-                return inertia('Dashboard/super_admin');
-                break;
-            case 'santri_baru':
-                return inertia('Dashboard/santri_baru');
-                break;
-            case 'santri_aktif':
-                return inertia('Dashboard/santri_aktif');
-                break;
-            case 'alumni':
-                return inertia('Dashboard/alumni');
-                break;
-            case 'admin_madin':
-                return inertia('Dashboard/admin_madin');
-                break;
-            case 'hankamtib':
-                return inertia('Dashboard/hankamtib');
-                break;
-            case 'bendahara':
-                return inertia('Dashboard/bendahara');
-                break;
-            case 'asatidz':
-                return inertia('Dashboard/asatidz');
-                break;
-            default:
-                return inertia('Dashboard/tamu');
-                break;
+        if (Auth::user() !== null) {
+            $role = Auth::user()->roles->pluck('name')[0] ?? 'tamu';
+            switch ($role) {
+                case 'admin':
+                    return inertia('Dashboard/admin');
+                    break;
+                case 'super_admin':
+                    return inertia('Dashboard/super_admin');
+                    break;
+                case 'santri_baru':
+                    return inertia('Dashboard/santri_baru');
+                    break;
+                case 'santri_aktif':
+                    return inertia('Dashboard/santri_aktif');
+                    break;
+                case 'alumni':
+                    return inertia('Dashboard/alumni');
+                    break;
+                case 'admin_madin':
+                    return inertia('Dashboard/admin_madin');
+                    break;
+                case 'hankamtib':
+                    return inertia('Dashboard/hankamtib');
+                    break;
+                case 'bendahara':
+                    return inertia('Dashboard/bendahara');
+                    break;
+                case 'asatidz':
+                    return inertia('Dashboard/asatidz');
+                    break;
+                default:
+                    return inertia('Dashboard/tamu');
+                    break;
+            }
+        } else {
+            return redirect('/');
         }
     }
 }

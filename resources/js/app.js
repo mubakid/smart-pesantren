@@ -5,9 +5,7 @@ import { Head } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
-// import "mdb-vue-ui-kit/css/mdb.min.css";
 
-// import {metisMenu} from "../../public/assets/plugins/metismenu/js/metisMenu.min.js";
 InertiaProgress.init({
     // The delay after which the progress bar will
     // appear during navigation, in milliseconds.
@@ -32,7 +30,6 @@ createInertiaApp({
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
             .use(plugin)
-            .use(PerfectScrollbar)
             .component("Head", Head)
             .mixin({ methods: { route } })
             .mount(el);

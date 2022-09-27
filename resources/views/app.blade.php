@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="color-header headercolor4 color-sidebar sidebarcolor3">
+<html class="color-header headercolor4">
 
 <head>
     <meta charset="utf-8" />
@@ -37,7 +37,7 @@
     </style>
 
     @routes
-    @vite(['resources/js/app.js', 'resources/css/app.css'])
+    @vite(['resources/sass/app.scss', 'resources/css/app.css', 'resources/js/app.js'])
     @inertiaHead
 </head>
 

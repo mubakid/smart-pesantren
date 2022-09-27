@@ -25,7 +25,7 @@ class StoreStudentRequest extends FormRequest
     {
         return [
             'nama' => 'required',
-            'nik' => 'required',
+            'nik' => ['required', 'unique:students', 'min:14'],
             'jenis_kelamin' => 'required',
             'tempat_lahir' => 'required',
             'tanggal_lahir' => 'required',

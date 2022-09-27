@@ -5,7 +5,9 @@ import { Head } from "@inertiajs/inertia-vue3";
 import { InertiaProgress } from "@inertiajs/progress";
 import PerfectScrollbar from "vue3-perfect-scrollbar";
 import "vue3-perfect-scrollbar/dist/vue3-perfect-scrollbar.css";
-
+import "vue-select/dist/vue-select.css";
+import vSelect from "vue-select";
+import "vue-search-select/dist/VueSearchSelect.css";
 InertiaProgress.init({
     // The delay after which the progress bar will
     // appear during navigation, in milliseconds.
@@ -31,6 +33,7 @@ createInertiaApp({
         createApp({ render: () => h(App, props) })
             .use(plugin)
             .component("Head", Head)
+            .component("v-select", vSelect)
             .mixin({ methods: { route } })
             .mount(el);
     },

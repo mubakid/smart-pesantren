@@ -20,9 +20,9 @@
                     </small>
                     <BaseInput
                         v-model="form.nik"
-                        type="text"
+                        type="number"
                         label="nik"
-                        placeholder="nik"
+                        placeholder="nomer KTP / nomer induk kependudukan "
                     />
                     <BaseInput
                         v-model="form.nis"
@@ -118,26 +118,30 @@
                         label="hobi"
                         placeholder="hobi"
                     />
-                    <BaseInput
-                        v-model="form.cita_cita"
-                        type="text"
-                        label="cita_cita"
-                        placeholder="cita_cita"
-                    />
+                    <div class="form-group mb-2">
+                        <label class="text-capitalize">Cita-cita</label>
+                        <v-select
+                            v-model="form.cita_cita"
+                            :options="cita"
+                        ></v-select>
+                    </div>
                 </div>
                 <div class="col-md-6">
-                    <BaseInput
-                        v-model="form.kewarganegaraan"
-                        type="text"
-                        label="kewarganegaraan"
-                        placeholder="kewarganegaraan"
-                    />
-                    <BaseInput
-                        v-model="form.kebutuhan_khusus"
-                        type="text"
-                        label="kebutuhan_khusus"
-                        placeholder="kebutuhan_khusus"
-                    />
+                    <div class="form-group mb-2">
+                        <label class="text-capitalize">Kewarganegaraan</label>
+                        <v-select
+                            v-model="form.kewarganegaraan"
+                            :reduce="(kewarganegaraan) => kewarganegaraan.value"
+                            :options="kewarganegaraan"
+                        ></v-select>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label class="text-capitalize">Kebutuhan Khusus</label>
+                        <v-select
+                            v-model="form.kebutuhan_khusus"
+                            :options="kebutuhan_khusus"
+                        ></v-select>
+                    </div>
                     <BaseInput
                         v-model="form.status_rumah"
                         type="text"
@@ -255,11 +259,12 @@ import { SelfBuildingSquareSpinner } from "epic-spinners";
 import BaseInput from "../../Components/BaseInput.vue";
 import { ref, reactive, defineProps } from "vue";
 import { Inertia } from "@inertiajs/inertia";
+import { ModelSelect } from "vue-search-select";
+
 let isSending = ref(false);
-// const firstName = ref("");
-// const lastName = ref("");
 const form = reactive({
     jenis_kelamin: "",
+    kewarganegaraan: "",
 });
 
 const props = defineProps({
@@ -272,4 +277,75 @@ const handleSubmit2 = () => {
         isSending.value = false;
     }, 3000);
 };
+
+let cita = ref([
+    "PNS",
+    "TNI/Polri",
+    "Guru/Dosen",
+    "Dokter",
+    "Politikus",
+    "Wiraswasta",
+    "Seniman/Artis",
+    "Ilmuwan",
+    "Agamawan",
+]);
+let kebutuhan_khusus = ref([
+    "Tidak ada",
+    "tuna netra",
+    "tuna rungu",
+    "tuna daksa",
+    "tuna grahita",
+    "tuna laras",
+    "tuna wicara",
+    "bakat istimewa",
+    "kesulitan belajar",
+]);
+let pendidikan = ref([
+    "tidak memiliki pendidikan formal",
+    "sd/mi/sederajat",
+    "smp/mts/sederajat",
+    "sma/ma/smk/sederajat",
+    "d1",
+    "d2",
+    "d3",
+    "d4/s1",
+    "s2",
+    "s3",
+]);
+let pekerjaan = ref([
+    "tidak bekerja",
+    "buruh (tani/pabrik/bangunan)",
+    "dokter/bidan/perawat",
+    "guru/dosen",
+    "nelayan",
+    "pedagang",
+    "pegawai swasta",
+    "pengacara/hakim/jaksa/notaris",
+    "pensiunan",
+    "petani/peternak",
+    "pilot/pramugari",
+    "pns",
+    "politikus",
+    "seniman/pelukis/artis/sejenis",
+    "sopir,masinis,kondektur",
+    "tni/polisi",
+    "wiraswasta",
+    "lainnya",
+]);
+let penghasilan = ref([
+    "tidak berpenghasilan",
+    "kurang dari 500.000",
+    "500.000 - 1 juta",
+    "1 juta - 2 juta",
+    "2 juta - 3 juta",
+    "3 juta - 4 juta",
+    "4 juta - 5 juta",
+    "lebih dari 5 juta",
+]);
+
+let hub_wali = ref(["Kakek/nenek", "Paman/bibi", "kakak", "lainnya"]);
+let kewarganegaraan = ref([
+    { value: "WNI", label: "Warga Negara Indonesia" },
+    { value: "WNA", label: "Warga Negara Asing" },
+]);
 </script>

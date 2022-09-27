@@ -15,9 +15,10 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function biodata()
     {
-        //
+        $student = Student::where('user_id', Auth::user()->id)->first();
+        return inertia('Student/Biodata', compact('student'));
     }
 
     /**
@@ -38,9 +39,11 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
+        $user = Auth::user();
         $data = $request->all();
-        $data['user_id'] = Auth::user()->id;
+        $data['user_id'] = $user->id;
         Student::create($data);
+        $user->syncRoles('santri_baru');
         sleep(3);
         return Redirect::route('home');
     }

@@ -27,24 +27,7 @@
                 </div>
             </div>
             <!--navigation-->
-            <ul class="metismenu" id="menu">
-                <li>
-                    <Link :href="route('home')">
-                        <div class="parent-icon">
-                            <i class="bx bx-home-circle"></i>
-                        </div>
-                        <div class="menu-title">Dashboard</div>
-                    </Link>
-                </li>
-                <li>
-                    <Link :href="route('home')">
-                        <div class="parent-icon">
-                            <i class="bx bx-home-circle"></i>
-                        </div>
-                        <div class="menu-title">Santri</div>
-                    </Link>
-                </li>
-            </ul>
+            <SidebarMenu :role="$page.props.role" />
             <!--end navigation-->
         </div>
         <!--end sidebar wrapper -->
@@ -58,7 +41,7 @@
                     >
                         <i class="bx bx-menu"></i>
                     </div>
-                    <div class="search-bar flex-grow-1">
+                    <div class="d-none d-md-block">
                         <div class="text-light">
                             {{
                                 $page.props.tgl_masehi +
@@ -74,11 +57,11 @@
                     </div>
                     <div class="top-menu ms-auto">
                         <ul class="navbar-nav align-items-center">
-                            <li class="nav-item mobile-search-icon">
+                            <!-- <li class="nav-item mobile-search-icon">
                                 <a class="nav-link" href="#">
                                     <i class="bx bx-search"></i>
                                 </a>
-                            </li>
+                            </li> -->
                             <li class="nav-item dropdown dropdown-large">
                                 <a
                                     class="nav-link dropdown-toggle dropdown-toggle-nocaret"
@@ -238,7 +221,7 @@
     </div>
     <!--end wrapper-->
     <!--start switcher-->
-    <div class="switcher-wrapper" :class="{ 'switcher-toggled': switcher }">
+    <!-- <div class="switcher-wrapper" :class="{ 'switcher-toggled': switcher }">
         <div class="switcher-btn" @click="switcherHandle">
             <i class="bx bx-cog bx-spin"></i>
         </div>
@@ -412,12 +395,13 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!--end switcher-->
 </template>
 <script setup>
 import { Head, Link } from "@inertiajs/inertia-vue3";
 import { ref, defineProps, onMounted } from "vue";
+import SidebarMenu from "./SidebarMenu.vue";
 import $ from "jquery";
 let toggle = ref(false);
 let sidebar = ref(false);

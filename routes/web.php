@@ -18,9 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return inertia('Auth/Login');
+    // return inertia('Dashboard/tamu2');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Route::resource('students', StudentController::class);
+Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata');

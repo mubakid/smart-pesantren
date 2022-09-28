@@ -189,6 +189,13 @@
   resolved "https://registry.npmjs.org/@vue/shared/-/shared-3.2.39.tgz"
   integrity sha512-D3dl2ZB9qE6mTuWPk9RlhDeP1dgNRUKC3NJxji74A4yL8M2MwlhLKUC/49WHjrNzSPug58fWx/yFbaTzGAQSBw==
 
+"@vuepic/vue-datepicker@^3.4.8":
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/@vuepic/vue-datepicker/-/vue-datepicker-3.4.8.tgz#45d088569dea7e9a1c0b3f9da93fb3742be06b79"
+  integrity sha512-nbuMA7IgjtT99LqcjSTSUcl7omTZSB+7vYSWQ9gQm31Frm/1wn54fT1Q0HaRD9nHXX982AACbqeND4K80SKONw==
+  dependencies:
+    date-fns "^2.29.2"
+
 alphanum-sort@^1.0.0:
   version "1.0.2"
   resolved "https://registry.npmjs.org/alphanum-sort/-/alphanum-sort-1.0.2.tgz"
@@ -590,6 +597,11 @@ csstype@^3.1.0:
   version "3.1.1"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
   integrity sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==
+
+date-fns@^2.29.2:
+  version "2.29.3"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
 
 deepmerge@^4.0.0:
   version "4.2.2"

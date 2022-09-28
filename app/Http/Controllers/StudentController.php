@@ -44,16 +44,11 @@ class StudentController extends Controller
         $data['user_id'] = $user->id;
         Student::create($data);
         $user->syncRoles('santri_baru');
-        sleep(3);
+        // sleep(2);
         return Redirect::route('home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Student  $student
-     * @return \Illuminate\Http\Response
-     */
+
     public function show(Student $student)
     {
         //

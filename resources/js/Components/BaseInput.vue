@@ -1,5 +1,5 @@
 <template>
-    <div class="form-group mb-2">
+    <div class="form-group mb-3">
         <label v-if="label" class="text-capitalize">{{ label }}</label>
         <input
             :value="modelValue"

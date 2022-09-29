@@ -5,7 +5,8 @@
             <hr />
         </div>
         <form @submit.prevent="handleSubmit2">
-            {{ errors }}
+            <!-- {{ errors }}
+            {{ form }} -->
             <div class="row my-4">
                 <div class="col-md-6">
                     <small class="text-danger">
@@ -18,7 +19,7 @@
                         placeholder="nama"
                     />
                     <BaseInput
-                        v-model="form.a_kk"
+                        v-model="form.kk"
                         type="number"
                         label="Nomor KK (Kartu keluarga)"
                         placeholder="Nomor KK"
@@ -32,12 +33,7 @@
                         label="Nomer KTP / NIK"
                         placeholder="nomer KTP / nomer induk kependudukan "
                     />
-                    <BaseInput
-                        v-model="form.nis"
-                        type="text"
-                        label="nis"
-                        placeholder="nis"
-                    />
+
                     <small class="text-danger">
                         {{ errors.tempat_lahir }}
                     </small>
@@ -114,6 +110,7 @@
                             </option>
                         </select>
                     </div>
+                    <!-- <p>{{ selected_kota.text }}</p> -->
                     <div class="form-group mb-3" v-if="kecamatan">
                         <label>Kecamatan</label>
                         <select
@@ -288,13 +285,13 @@
                 <div class="col-md-6">
                     <BaseInput
                         v-model="form.a_nik"
-                        type="text"
+                        type="number"
                         label="No Ktp/Nik Ayah"
                         placeholder="No Ktp/Nik Ayah"
                     />
                     <BaseInput
                         v-model="form.a_nama"
-                        type="number"
+                        type="text"
                         label="Nama Ayah"
                         placeholder="Nama Ayah"
                     />
@@ -303,6 +300,7 @@
                         <v-select
                             v-model="form.a_pekerjaan"
                             :options="pekerjaan"
+                            taggable
                         ></v-select>
                     </div>
                     <div class="form-group mb-3">
@@ -310,6 +308,7 @@
                         <v-select
                             v-model="form.a_pendidikan"
                             :options="pendidikan"
+                            taggable
                         ></v-select>
                     </div>
                     <BaseInput
@@ -318,12 +317,14 @@
                         label="Nomor Hp/Wa Ayah"
                         placeholder="085xxxx"
                     />
-                    <BaseInput
-                        v-model="form.a_penghasilan"
-                        type="text"
-                        label="a_penghasilan"
-                        placeholder="a_penghasilan"
-                    />
+                    <div class="form-group mb-3">
+                        <label class="text-capitalize">Penghasilan Ayah</label>
+                        <v-select
+                            v-model="form.a_penghasilan"
+                            :options="penghasilan"
+                            taggable
+                        ></v-select>
+                    </div>
                 </div>
                 <div class="col-md-6">
                     <BaseInput
@@ -335,14 +336,15 @@
                     <BaseInput
                         v-model="form.i_nama"
                         type="text"
-                        label="i_nama"
-                        placeholder="i_nama"
+                        label="Nama Ibu"
+                        placeholder="Nama Ibu"
                     />
                     <div class="form-group mb-3">
                         <label class="text-capitalize">Pekerjaan Ibu</label>
                         <v-select
                             v-model="form.i_pekerjaan"
                             :options="pekerjaan"
+                            taggable
                         ></v-select>
                     </div>
                     <div class="form-group mb-3">
@@ -350,6 +352,7 @@
                         <v-select
                             v-model="form.i_pendidikan"
                             :options="pendidikan"
+                            taggable
                         ></v-select>
                     </div>
                     <BaseInput
@@ -368,36 +371,44 @@
             <hr />
             <div class="row my-4" v-if="wali">
                 <div class="col-md-6">
-                    <BaseInput
-                        v-model="form.w_hubungan_wali"
-                        type="text"
-                        label="w_hubungan_wali"
-                        placeholder="w_hubungan_wali"
-                    />
+                    <div class="form-group mb-3">
+                        <label class="text-capitalize">Hubungan wali</label>
+                        <v-select
+                            v-model="form.w_hubungan_wali"
+                            :options="hub_wali"
+                            taggable
+                        ></v-select>
+                    </div>
                     <BaseInput
                         v-model="form.w_nik"
-                        type="text"
-                        label="w_nik"
-                        placeholder="w_nik"
+                        type="number"
+                        label="Nik/Ktp Wali"
+                        placeholder="Nomer ktp"
                     />
                     <BaseInput
                         v-model="form.w_nama"
                         type="text"
-                        label="w_nama"
-                        placeholder="w_nama"
+                        label="Nama Wali"
+                        placeholder="Nama Wali"
                     />
-                    <BaseInput
-                        v-model="form.w_pekerjaan"
-                        type="text"
-                        label="w_pekerjaan"
-                        placeholder="w_pekerjaan"
-                    />
-                    <BaseInput
-                        v-model="form.w_penghasilan"
-                        type="text"
-                        label="w_penghasilan"
-                        placeholder="w_penghasilan"
-                    />
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label class="text-capitalize">Pekerjaan Wali</label>
+                        <v-select
+                            v-model="form.w_pekerjaan"
+                            :options="pekerjaan"
+                            taggable
+                        ></v-select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label class="text-capitalize">Penghasilan Wali</label>
+                        <v-select
+                            v-model="form.w_penghasilan"
+                            :options="penghasilan"
+                            taggable
+                        ></v-select>
+                    </div>
                 </div>
             </div>
             <div class="d-flex justify-content-end align-items-center mb-3">
@@ -481,7 +492,6 @@ const form = reactive({
     kebutuhan_khusus: "Tidak ada",
     status_rumah: "tinggal dengan orang tua/wali",
     status_mukim: "Ya",
-    kota: "ss",
 });
 
 const props = defineProps({
@@ -489,7 +499,55 @@ const props = defineProps({
 });
 const handleSubmit2 = () => {
     isSending.value = true;
-    Inertia.post(route("students.store"), form);
+    Inertia.post(route("students.store"), {
+        nama: form.nama,
+        nik: form.nik,
+        tempat_lahir: form.tempat_lahir,
+        tanggal_lahir: form.tanggal_lahir,
+        jenis_kelamin: form.jenis_kelamin,
+        alamat: form.alamat,
+        rtrw: form.rtrw,
+        desa: selected_desa.value.text,
+        kecamatan: selected_kecamatan.value.text,
+        kota: selected_kota.value.text,
+        provinsi: selected_provinsi.value.text,
+        kode_pos: form.kode_pos,
+        agama: form.agama,
+        hobi: form.hobi,
+        cita_cita: form.cita_cita,
+        kewarganegaraan: form.kewarganegaraan,
+        kebutuhan_khusus: form.kebutuhan_khusus,
+        status_rumah: form.status_rumah,
+        status_mukim: form.status_mukim,
+        sekolah_asal: form.sekolah_asal,
+        alamat_sekolah_asal: form.alamat_sekolah_asal,
+        npsn_sekolah_asal: form.npsn_sekolah_asal,
+        nsm_sekolah_asal: form.nsm_sekolah_asal,
+        no_ijazah: form.no_ijazah,
+        no_un: form.no_un,
+        nism: form.nism,
+        kip: form.kip,
+        pkh: form.pkh,
+        kks: form.kks,
+        kk: form.kk,
+
+        a_nik: form.a_nik,
+        a_nama: form.a_nama,
+        a_pekerjaan: form.a_pekerjaan,
+        a_pendidikan: form.a_pendidikan,
+        a_phone: form.a_phone,
+        a_penghasilan: form.a_penghasilan,
+        i_nik: form.i_nik,
+        i_nama: form.i_nama,
+        i_pekerjaan: form.i_pekerjaan,
+        i_pendidikan: form.i_pendidikan,
+        i_phone: form.i_phone,
+        w_hubungan_wali: form.w_hubungan_wali,
+        w_nik: form.w_nik,
+        w_nama: form.w_nama,
+        w_pekerjaan: form.w_pekerjaan,
+        w_penghasilan: form.w_penghasilan,
+    });
     setTimeout(() => {
         isSending.value = false;
     }, 3000);

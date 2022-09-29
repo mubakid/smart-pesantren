@@ -17,7 +17,6 @@ return new class extends Migration
         Schema::create('families', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Student::class);
-            $table->string('a_kk')->nullable();
             $table->string('a_nik')->nullable();
             $table->string('a_nama')->nullable();
             $table->string('a_pekerjaan')->nullable();

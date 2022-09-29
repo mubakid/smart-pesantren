@@ -7,5 +7,8 @@ use Illuminate\Http\Request;
 
 class TamuController extends Controller
 {
-    //
+    public function regLembaga()
+    {
+        return inertia('Tamu/RegLembaga');
+    }
 }

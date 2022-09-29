@@ -32,3 +32,7 @@ $role = Auth::user()->roles[0]->name;
                 return route('dashboard.tamu');
                 break;
         }
+
+
+- jangan lupa logic nis saat input
+- madin is_verified letakkan di tb:madin saja, hapus yang si students

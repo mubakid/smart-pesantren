@@ -62,7 +62,10 @@
                                     <i class="bx bx-search"></i>
                                 </a>
                             </li> -->
-                            <li class="nav-item dropdown dropdown-large">
+                            <li
+                                class="nav-item dropdown dropdown-large"
+                                v-if="$page.props.role == 'admin'"
+                            >
                                 <a
                                     class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                                     href="#"
@@ -147,8 +150,12 @@
                                 alt="user avatar"
                             />
                             <div class="user-info ps-3">
-                                <p class="user-name mb-0">Pauline Seitz</p>
-                                <p class="designattion mb-0">Web Designer</p>
+                                <p class="user-name mb-0">
+                                    {{ $page.props.user.name }}
+                                </p>
+                                <p class="designattion mb-0">
+                                    {{ $page.props.role }}
+                                </p>
                             </div>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">

@@ -52,6 +52,7 @@ return new class extends Migration
             $table->string('kip')->nullable();
             $table->string('pkh')->nullable();
             $table->string('kks')->nullable();
+            $table->string('kk')->nullable();
 
             // lembaga formal dan madin
             $table->string('formal_education_id')->nullable();
@@ -60,7 +61,6 @@ return new class extends Migration
             $table->unsignedBigInteger('dormitory_id')->nullable();
             $table->string('room')->nullable();
             // kelas madin dan rombel
-            $table->boolean('madin_is_verified')->nullable();
             $table->bigInteger('madin_rombel_id')->nullable();
             $table->timestamps();
         });

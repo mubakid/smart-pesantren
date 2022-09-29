@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
+use App\Models\Family;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\StoreStudentRequest;
+use App\Http\Requests\UpdateStudentRequest;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class StudentController extends Controller
 {
@@ -42,10 +44,32 @@ class StudentController extends Controller
         $user = Auth::user();
         $data = $request->all();
         $data['user_id'] = $user->id;
-        Student::create($data);
+        $data['nis'] = IdGenerator::generate(['table' => 'students', 'field' => 'nis',  'length' => 8, 'prefix' => date('y')]);
+        $student = Student::create($data);
+
+        $family = new Family;
+        $family->student_id = $student->id;
+        $family->a_nik = $request->a_nik;
+        $family->a_nama = $request->a_nama;
+        $family->a_pekerjaan = $request->a_pekerjaan;
+        $family->a_pendidikan = $request->a_pendidikan;
+        $family->a_phone = $request->a_phone;
+        $family->a_penghasilan = $request->a_penghasilan;
+        $family->i_nik = $request->i_nik;
+        $family->i_nama = $request->i_nama;
+        $family->i_pekerjaan = $request->i_pekerjaan;
+        $family->i_pendidikan = $request->i_pendidikan;
+        $family->i_phone = $request->i_phone;
+        $family->w_hubungan_wali = $request->w_hubungan_wali;
+        $family->w_nik = $request->w_nik;
+        $family->w_nama = $request->w_nama;
+        $family->w_pekerjaan = $request->w_pekerjaan;
+        $family->w_penghasilan = $request->w_penghasilan;
+        $family->save();
+
         $user->syncRoles('santri_baru');
         // sleep(2);
-        return Redirect::route('home');
+        return Redirect::route('tamu.reg-lembaga');
     }
 
 

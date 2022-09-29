@@ -24,12 +24,12 @@ class StoreStudentRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required',
-            'nik' => ['required', 'unique:students', 'min:14'],
-            'jenis_kelamin' => 'required',
-            'tempat_lahir' => 'required',
-            'tanggal_lahir' => 'required',
-            'kota' => 'required',
+            // 'nama' => 'required',
+            // 'nik' => ['required', 'unique:students', 'min:14'],
+            // 'jenis_kelamin' => 'required',
+            // 'tempat_lahir' => 'required',
+            // 'tanggal_lahir' => 'required',
+            // 'kota' => 'required',
         ];
     }
 }

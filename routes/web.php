@@ -1,9 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
-use Illuminate\Support\Facades\Route;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Tamu\TamuController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,8 @@ Route::get('/', function () {
     return inertia('Auth/Login');
     // return inertia('Dashboard/tamu2');
 });
+Route::get('/try', function () {
+});
 
 Auth::routes();
 
@@ -27,3 +31,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::resource('students', StudentController::class);
 Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata');
+Route::group(['middleware' => ['role:santri_baru']], function () {
+    Route::get('/registrasi_lembaga', [TamuController::class, 'regLembaga'])->name('tamu.reg-lembaga');
+});

@@ -5,12 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Dormitory extends Model
+class MadinNilai extends Model
 {
+    protected $table = 'madin_nilai';
     use HasFactory;
-    protected $guarded = [];
-    public function students()
-    {
-        return $this->hasMany(Student::class);
-    }
 }

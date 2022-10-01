@@ -31,6 +31,8 @@
                                     </div>
                                     <div class="mb-3 text-center">
                                         <input
+                                            @keydown.space.prevent
+                                            @paste.space="remove_on_paste"
                                             type="text"
                                             placeholder="Email atau Nomer Wa"
                                             v-model="form.email"
@@ -124,4 +126,23 @@ const form = reactive({
 const handleSubmit = () => {
     Inertia.post(route("register"), form);
 };
+const remove_on_paste = (event) => {
+    let main_text = event.clipboardData.getData("text");
+
+    event.preventDefault();
+    this.floatingData.from_id = main_text.trim();
+};
 </script>
+
+<style>
+.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url("https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+</style>

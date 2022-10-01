@@ -17,6 +17,7 @@
                                 <form @submit.prevent="handleSubmit">
                                     <div class="mb-3 text-center">
                                         <input
+                                            @keydown.space.prevent
                                             type="text"
                                             placeholder="Email atau Nomor WA"
                                             v-model="form.email"
@@ -104,3 +105,15 @@ const handleSubmit = () => {
     Inertia.post(route("login"), form);
 };
 </script>
+<style>
+.login,
+.image {
+    min-height: 100vh;
+}
+
+.bg-image {
+    background-image: url("https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg");
+    background-size: cover;
+    background-position: center center;
+}
+</style>

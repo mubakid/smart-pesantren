@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formal_education', function (Blueprint $table) {
+        Schema::create('madin_presensi', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('ket')->nullable();
+            $table->unsignedBigInteger('student_id');
+            $table->string('tahun');
+            $table->string('bulan');
+            $table->string('tanggal');
+
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formal_education');
+        Schema::dropIfExists('madin_presensi');
     }
 };

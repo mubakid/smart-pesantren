@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formal_education', function (Blueprint $table) {
+        Schema::create('madin_mapel', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('ket')->nullable();
+            $table->string('kode_mapel');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formal_education');
+        Schema::dropIfExists('madin_mapel');
     }
 };

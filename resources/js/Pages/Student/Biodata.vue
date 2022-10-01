@@ -50,7 +50,7 @@
                                         width="110"
                                     />
                                     <div class="mt-3">
-                                        <h4>John Doe</h4>
+                                        <h4>{{ student.nama }}</h4>
                                         <p class="text-secondary mb-1">
                                             Full Stack Developer
                                         </p>
@@ -250,5 +250,9 @@
     </AppLayout>
 </template>
 <script setup>
+import { defineProps } from "vue";
 import AppLayout from "../../Shared/AppLayout.vue";
+defineProps({
+    student: Object,
+});
 </script>

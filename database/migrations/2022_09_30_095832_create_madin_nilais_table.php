@@ -13,10 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formal_education', function (Blueprint $table) {
+        Schema::create('madin_nilai', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('ket')->nullable();
+            $table->unsignedBigInteger('student_id');
+            $table->string('madin_mapel_id')->nullable();
+            $table->string('nilai');
+            $table->string('kode_kwartal');
+            $table->foreign('student_id')
+                ->references('id')
+                ->on('students')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formal_education');
+        Schema::dropIfExists('madin_nilai');
     }
 };

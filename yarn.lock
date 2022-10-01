@@ -449,6 +449,11 @@ core-js@^3.0.1, core-js@^3.1.3:
   resolved "https://registry.npmjs.org/core-js/-/core-js-3.25.2.tgz"
   integrity sha512-YB4IAT1bjEfxTJ1XYy11hJAKskO+qmhuDBM8/guIfMz4JvdsAQAqvyb97zXX7JgSrfPLG5mRGFWJwJD39ruq2A==
 
+core-js@^3.3.2:
+  version "3.25.3"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.3.tgz#cbc2be50b5ddfa7981837bd8c41639f27b166593"
+  integrity sha512-y1hvKXmPHvm5B7w4ln1S4uc9eV/O5+iFExSRUimnvIph11uaizFR8LFMdONN8hG3P2pipUfX4Y/fR8rAEtcHcQ==
+
 cosmiconfig@^5.0.0:
   version "5.2.1"
   resolved "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-5.2.1.tgz"
@@ -1414,6 +1419,11 @@ pify@^2.3.0:
   resolved "https://registry.npmjs.org/pify/-/pify-2.3.0.tgz"
   integrity sha512-udgsAY+fTnvv7kI7aaxbqwWNb0AHiB0qBO89PZKPkoTmGOgdbrHDKD+0B2X4uTfJ/FT1R09r9gTsjUjNJotuog==
 
+ping.js@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ping.js/-/ping.js-0.3.0.tgz#3e90615159785114fa1bc550f69136a593c49315"
+  integrity sha512-qisFwio7j0cwYbOcRL4BlTdxKALcpGPTkpl8ichGASgkrVqfI3sZfQDsP8wETR5rfutXZJLjlJ117aLkRnk2mA==
+
 postcss-calc@^7.0.1:
   version "7.0.5"
   resolved "https://registry.npmjs.org/postcss-calc/-/postcss-calc-7.0.5.tgz"
@@ -1979,6 +1989,13 @@ util.promisify@~1.0.0:
     has-symbols "^1.0.1"
     object.getownpropertydescriptors "^2.1.0"
 
+v-offline@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/v-offline/-/v-offline-2.3.0.tgz#388cc3e0c320f88e9de74e3523ff9ac3158db920"
+  integrity sha512-T04BSt36tcaZTHt4xrcwF93ZEUwbyOOGSbF1OehmVWL1vTJTb+chH9cPc/L5ZuM99BI64dH6A5lD5JQB8bvRsQ==
+  dependencies:
+    ping.js "^0.3.0"
+
 vendors@^1.0.0:
   version "1.0.4"
   resolved "https://registry.npmjs.org/vendors/-/vendors-1.0.4.tgz"
@@ -2004,6 +2021,11 @@ vite@^3.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
+vue-internet-checker@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/vue-internet-checker/-/vue-internet-checker-2.0.1.tgz#2732c538778d8a847e44b9d10f05519134721157"
+  integrity sha512-9UXfbDdT5jmbBTyx7yna46bbrrkPyt9I3Tepl6Ed8WyQNjESfqIqJ+NFG/fnBNfARDRGQyivFJTXdR9h3mCriw==
+
 vue-loading-button@^0.2.0:
   version "0.2.0"
   resolved "https://registry.npmjs.org/vue-loading-button/-/vue-loading-button-0.2.0.tgz"
@@ -2013,6 +2035,14 @@ vue-loading-overlay@^5.0.3:
   version "5.0.3"
   resolved "https://registry.npmjs.org/vue-loading-overlay/-/vue-loading-overlay-5.0.3.tgz"
   integrity sha512-6JWZalwlHF4do3HXsFZGt6PcWYseAI5FuNKpveEkljkzqskDWRr7rYmYHVx2kKu4qIvK0vLpL25T/hpFMNoevQ==
+
+vue-online-offline@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/vue-online-offline/-/vue-online-offline-1.1.0.tgz#59f4dea8a84893f02b0fd449403cd0665c0dd8f5"
+  integrity sha512-WdDnPi2N8l5Ijs3R79LYf+DAWWojkQg2/NitiVU4MFdWcSk57h7yaenM3ujdngKpyG6dYc5Wu4qg6XBLlfomlg==
+  dependencies:
+    core-js "^3.3.2"
+    vue "^2.6.10"
 
 vue-search-select@^2.9.5:
   version "2.9.5"

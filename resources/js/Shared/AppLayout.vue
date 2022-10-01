@@ -13,17 +13,13 @@
         >
             <div class="sidebar-header">
                 <div>
-                    <img
-                        src="assets/images/logo-icon.png"
-                        class="logo-icon"
-                        alt="logo icon"
-                    />
+                    <img :src="logoUrl" class="logo-icon" alt="logo icon" />
                 </div>
                 <div>
-                    <h4 class="logo-text">MUBAKID</h4>
+                    <h4 class="logo-text text-success ms-3">MUBAKID</h4>
                 </div>
                 <div class="toggle-icon ms-auto" @click="toggleIconHandle">
-                    <i class="bx bx-arrow-to-left"></i>
+                    <i class="bx bx-menu-alt-left text-success"></i>
                 </div>
             </div>
             <!--navigation-->
@@ -136,6 +132,7 @@
                             </li>
                         </ul>
                     </div>
+
                     <div class="user-box dropdown">
                         <a
                             class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
@@ -145,7 +142,7 @@
                             aria-expanded="false"
                         >
                             <img
-                                src="assets/images/avatars/avatar-2.png"
+                                :src="imageUrl"
                                 class="user-img"
                                 alt="user avatar"
                             />
@@ -222,9 +219,7 @@
             ><i class="bx bxs-up-arrow-alt"></i
         ></a>
         <!--End Back To Top Button-->
-        <footer class="page-footer">
-            <p class="mb-0">Copyright © 2021. All right reserved.</p>
-        </footer>
+        <CekInternet />
     </div>
     <!--end wrapper-->
     <!--start switcher-->
@@ -410,9 +405,16 @@ import { Head, Link } from "@inertiajs/inertia-vue3";
 import { ref, defineProps, onMounted } from "vue";
 import SidebarMenu from "./SidebarMenu.vue";
 import $ from "jquery";
+import CekInternet from "../Components/CekInternetDashboard.vue";
 let toggle = ref(false);
 let sidebar = ref(false);
 let switcher = ref(false);
+
+const imageUrl = new URL(
+    "../../../public/assets/user-profile.png",
+    import.meta.url
+);
+const logoUrl = new URL("../../../public/assets/logo.png", import.meta.url);
 
 const mobileToggleMenuHandle = () => {
     toggle.value = true;

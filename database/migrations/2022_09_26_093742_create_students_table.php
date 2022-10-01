@@ -55,13 +55,13 @@ return new class extends Migration
             $table->string('kk')->nullable();
 
             // lembaga formal dan madin
-            $table->string('formal_education_id')->nullable();
-            $table->string('madin_education_id')->nullable();
+            $table->unsignedBigInteger('formal_education_id')->nullable();
+            $table->unsignedBigInteger('madin_education_id')->nullable();
             // daerah dan asrama
             $table->unsignedBigInteger('dormitory_id')->nullable();
             $table->string('room')->nullable();
             // kelas madin dan rombel
-            $table->bigInteger('madin_rombel_id')->nullable();
+            $table->unsignedBigInteger('madin_rombel_id')->nullable();
             $table->timestamps();
         });
     }

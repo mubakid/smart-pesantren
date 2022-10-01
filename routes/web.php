@@ -30,7 +30,9 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('students', StudentController::class);
-Route::get('biodata', [StudentController::class, 'biodata'])->name('biodata');
+Route::get('/santri/biodata', [StudentController::class, 'biodata'])->name('biodata');
 Route::group(['middleware' => ['role:santri_baru']], function () {
-    Route::get('/registrasi_lembaga', [TamuController::class, 'regLembaga'])->name('tamu.reg-lembaga');
+    Route::get('/santri/registrasi-lembaga', [TamuController::class, 'regLembaga'])->name('tamu.reg-lembaga');
+    Route::post('/santri/registrasi-lembaga', [TamuController::class, 'storeLembaga'])->name('tamu.reg-lembaga');
+    Route::get('/santri/upload-foto', [TamuController::class, 'uploadFoto'])->name('tamu.upload-foto');
 });

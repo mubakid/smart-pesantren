@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('formal_education', function (Blueprint $table) {
+        Schema::create('madin_kwartal', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('ket')->nullable();
+            $table->string('kode_kwartal');
+            $table->string('tahun');
+            $table->string('desc')->nullable();
+            $table->boolean('is_active')->default(false);
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('formal_education');
+        Schema::dropIfExists('madin_kwartal');
     }
 };

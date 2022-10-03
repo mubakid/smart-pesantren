@@ -19,7 +19,7 @@ class HomeController extends Controller
                     return inertia('Dashboard/super_admin');
                     break;
                 case 'tamu':
-                    return inertia('Dashboard/tamu');
+                    return inertia('Dashboard/form_pendaftaran');
                     break;
                 case 'santri_baru':
                     return inertia('Dashboard/santri_baru');
@@ -43,7 +43,7 @@ class HomeController extends Controller
                     return inertia('Dashboard/asatidz');
                     break;
                 default:
-                    return inertia('Dashboard/tamu');
+                    return inertia('Dashboard/form_pendaftaran');
                     break;
             }
         } else {

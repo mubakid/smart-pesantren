@@ -141,7 +141,7 @@ const remove_on_paste = (event) => {
 }
 
 .bg-image {
-    background-image: url("https://therichpost.com/wp-content/uploads/2021/02/login-split.jpg");
+    background-image: url("./assets/images/login-header.jpeg");
     background-size: cover;
     background-position: center center;
 }

@@ -29,7 +29,7 @@
         <!--end sidebar wrapper -->
         <!--start header -->
         <header>
-            <div class="topbar d-flex align-items-center">
+            <div class="topbar d-flex">
                 <nav class="navbar navbar-expand">
                     <div
                         class="mobile-toggle-menu"
@@ -52,7 +52,7 @@
                         </div>
                     </div>
                     <div class="top-menu ms-auto">
-                        <ul class="navbar-nav align-items-center">
+                        <ul class="navbar-nav">
                             <!-- <li class="nav-item mobile-search-icon">
                                 <a class="nav-link" href="#">
                                     <i class="bx bx-search"></i>
@@ -101,32 +101,6 @@
                                                 Hankamtib
                                             </div>
                                         </div>
-                                        <!-- <div class="col text-center">
-                                            <div
-                                                class="app-box mx-auto bg-gradient-kyoto text-dark"
-                                            >
-                                                <i
-                                                    class="bx bx-notification"
-                                                ></i>
-                                            </div>
-                                            <div class="app-title">Feeds</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div
-                                                class="app-box mx-auto bg-gradient-blues text-dark"
-                                            >
-                                                <i class="bx bx-file"></i>
-                                            </div>
-                                            <div class="app-title">Files</div>
-                                        </div>
-                                        <div class="col text-center">
-                                            <div
-                                                class="app-box mx-auto bg-gradient-moonlit text-white"
-                                            >
-                                                <i class="bx bx-filter-alt"></i>
-                                            </div>
-                                            <div class="app-title">Alerts</div>
-                                        </div> -->
                                     </div>
                                 </div>
                             </li>
@@ -135,7 +109,7 @@
 
                     <div class="user-box dropdown">
                         <a
-                            class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret"
+                            class="d-flex nav-link dropdown-toggle dropdown-toggle-nocaret"
                             href="#"
                             role="button"
                             data-bs-toggle="dropdown"
@@ -206,7 +180,7 @@
         <!--end header -->
         <!--start page wrapper -->
         <div class="page-wrapper">
-            <div class="page-content">
+            <div class="page-content text-start">
                 <slot />
             </div>
         </div>
@@ -506,5 +480,21 @@ $(function () {
         $("#minimaltheme").on("click", function () {
             $("html").attr("class", "minimal-theme");
         });
+    $(window).on("scroll", function () {
+        $(this).scrollTop() > 300
+            ? $(".back-to-top").fadeIn()
+            : $(".back-to-top").fadeOut();
+    });
+    $(".back-to-top").on("click", function () {
+        return (
+            $("html, body").animate(
+                {
+                    scrollTop: 0,
+                },
+                600
+            ),
+            !1
+        );
+    });
 });
 </script>

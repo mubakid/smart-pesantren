@@ -1,5 +1,5 @@
 <template>
-    <!-- <footer class="page-footer" :class="{ 'bg-danger': !onLine }">
+    <footer class="page-footer" :class="{ 'bg-danger': !onLine }">
         <div
             class="d-flex"
             :class="{
@@ -17,8 +17,8 @@
                 >v3.0 | BakidDev © 2022
             </span>
         </div>
-    </footer> -->
-    <footer class="page-footer">ss</footer>
+    </footer>
+    <!-- <footer class="page-footer">ss</footer> -->
 </template>
 
 <script>

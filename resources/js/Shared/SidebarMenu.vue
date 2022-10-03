@@ -9,7 +9,7 @@
             </Link>
         </li>
         <li>
-            <Link :href="route('home')">
+            <Link :href="route('admin.santri.index')">
                 <div class="parent-icon">
                     <i class="bx bx-home-circle"></i>
                 </div>

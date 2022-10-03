@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\SantriController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
@@ -28,11 +29,17 @@ Route::get('/try', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::resource('students', StudentController::class);
+Route::name('admin.')->group(function () {
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('santri', SantriController::class);
+    });
+});
 Route::get('/santri/biodata', [StudentController::class, 'biodata'])->name('biodata');
+Route::resource('students', StudentController::class);
 Route::group(['middleware' => ['role:santri_baru']], function () {
-    Route::get('/santri/registrasi-lembaga', [TamuController::class, 'regLembaga'])->name('tamu.reg-lembaga');
-    Route::post('/santri/registrasi-lembaga', [TamuController::class, 'storeLembaga'])->name('tamu.reg-lembaga');
-    Route::get('/santri/upload-foto', [TamuController::class, 'uploadFoto'])->name('tamu.upload-foto');
+    Route::get('/santri/registrasi-lembaga', [StudentController::class, 'regLembaga'])->name('santri.reg-lembaga');
+    Route::post('/santri/registrasi-lembaga', [StudentController::class, 'storeLembaga'])->name('santri.reg-lembaga');
+    Route::get('/santri/upload-foto', [StudentController::class, 'uploadFoto'])->name('santri.upload-foto');
+    Route::post('/santri/upload-foto', [StudentController::class, 'storeFoto'])->name('santri.store-foto');
+    Route::get('/santri/pilih-metode-pembayaran', [StudentController::class, 'pilihMetodePembayaran'])->name('santri.pilih-metode-pembayaran');
 });

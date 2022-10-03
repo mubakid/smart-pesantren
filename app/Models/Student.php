@@ -12,7 +12,45 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Student extends Model
 {
     use HasFactory;
-    protected $guarded = ['a_kk'];
+    protected $fillable = [
+        'nik',
+        'nis',
+        'hp',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'alamat',
+        'rtrw',
+        'desa',
+        'kecamatan',
+        'kota',
+        'provinsi',
+        'kode_pos',
+        'agama',
+        'hobi',
+        'cita_cita',
+        'kewarganegaraan',
+        'kebutuhan_khusus',
+        'status_rumah',
+        'status_mukim',
+        'sekolah_asal',
+        'alamat_sekolah_asal',
+        'npsn_sekolah_asal',
+        'nsm_sekolah_asal',
+        'no_ijazah',
+        'no_un',
+        'foto',
+        'foto_wali',
+        'nism',
+        'kip',
+        'pkh',
+        'kks',
+        'formal_education_id',
+        'madin_education_id',
+        'dormitory_id',
+        'room',
+        'madin_rombel_id',
+    ];
     public function user()
     {
         return $this->hasOne(User::class);

@@ -17,6 +17,6 @@ class DashboardController extends Controller
     }
     public function tamu()
     {
-        return inertia('Tamu/Dashboard');
+        return inertia('Student/Dashboard');
     }
 }

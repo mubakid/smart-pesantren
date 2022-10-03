@@ -3,7 +3,9 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom">
             <div class="col-md-6">
                 <div class="d-grid mx-3">
-                    <Link class="btn btn-secondary" :href="route('home')"
+                    <Link
+                        class="btn btn-secondary"
+                        :href="route('santri.upload-foto')"
                         >Lewati</Link
                     >
                 </div>
@@ -127,7 +129,7 @@ const form = reactive({
     selectedMadin: "",
 });
 const handleSubmit = () => {
-    Inertia.post(route("tamu.reg-lembaga"), {
+    Inertia.post(route("santri.reg-lembaga"), {
         daerah: form.daerah.id,
         asrama: form.asrama,
         madin: form.selectedMadin.id,

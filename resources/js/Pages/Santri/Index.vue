@@ -1,19 +1,9 @@
 <template>
     <AppLayout>
+        <Alert />
+        <h1>{{}}</h1>
         <div class="card p-1 text-capitalize">
             <div class="row">
-                <div class="col my-1 form-group">
-                    <input
-                        type="text"
-                        class="form-control-sm"
-                        placeholder="Cari nama..."
-                        @input="searchInput"
-                    />
-                    <!-- <small>
-                        <span v-if="typing">You are typing</span>
-                        <span v-if="message">You typed: {{ message }}</span>
-                    </small> -->
-                </div>
                 <div class="col my-1">
                     <v-select :options="['daerah']" placeholder="Daerah" />
                 </div>
@@ -29,7 +19,26 @@
             </div>
         </div>
         <div class="row">
-            <div class="d-md-flex justify-content-end">
+            <div class="d-md-flex justify-content-between">
+                <div class="mb-2">
+                    <select
+                        class="form-select-sm"
+                        v-model="perPage"
+                        @change="getTags"
+                    >
+                        <option value="15">15</option>
+                        <option value="30">30</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                    <input
+                        v-model="search"
+                        type="text"
+                        class="form-control-sm ms-2"
+                        placeholder="Cari nama..."
+                        autofocus
+                    />
+                </div>
                 <div class="dropdown">
                     <button
                         class="btn btn-sm btn-primary dropdown-toggle"
@@ -59,8 +68,8 @@
             <table class="table table-striped">
                 <thead class="table-success">
                     <tr class="text-capitalize">
-                        <th>Nis</th>
                         <th>Nama</th>
+                        <th>Nis</th>
                         <th>Jk</th>
                         <th>Usia</th>
                         <th>daerah</th>
@@ -70,8 +79,8 @@
                 </thead>
                 <tbody>
                     <tr v-for="s in students">
-                        <td>{{ s.nis }}</td>
                         <td>{{ s.nama }}</td>
+                        <td>{{ s.nis }}</td>
                         <td>{{ s.jenis_kelamin }}</td>
                         <td></td>
                         <td>daerah</td>
@@ -98,17 +107,7 @@
                                 <ul class="dropdown-menu" style="">
                                     <li>
                                         <a class="dropdown-item" href="#"
-                                            >Action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"
-                                            >Another action</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#"
-                                            >Something else here</a
+                                            >Show</a
                                         >
                                     </li>
                                     <li>
@@ -116,7 +115,22 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="#"
-                                            >Separated link</a
+                                            >MoU</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >KTS</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >K.Mahrom</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#"
+                                            >Biodata</a
                                         >
                                     </li>
                                 </ul>
@@ -129,21 +143,57 @@
     </AppLayout>
 </template>
 <script setup>
-import { defineProps, ref } from "vue";
+import { defineProps, ref, watch } from "vue";
 import AppLayout from "../../Shared/AppLayout.vue";
-let message = ref();
-let typing = ref();
-let debounce = ref();
-defineProps({
+import Alert from "../../Components/Alert.vue";
+import { Inertia } from "@inertiajs/inertia";
+// let message = ref();
+// let typing = ref();
+// let debounce = ref();
+const props = defineProps({
     students: Object,
+    tags: Object,
+    filters: Object,
 });
-const searchInput = (event) => {
-    message.value = null;
-    typing.value = "You are typing";
-    clearTimeout(debounce);
-    debounce = setTimeout(() => {
-        typing.value = null;
-        message.value = event.target.value;
-    }, 600);
-};
+
+const search = ref("");
+const perPage = ref(5);
+
+watch(search, (value) => {
+    Inertia.get(
+        route("admin.santri.index"),
+        {
+            search: value,
+            perPage: perPage.value,
+        },
+        {
+            preserveState: true,
+            replace: true,
+        }
+    );
+});
+
+// const getTags = () => {
+//     Inertia.get(
+//         route("admin.santri.index"),
+//         {
+//             search: search.value,
+//             perPage: perPage.value,
+//         },
+//         {
+//             preserveState: true,
+//             replace: true,
+//         }
+//     );
+// };
+
+// const searchInput = (event) => {
+//     message.value = null;
+//     typing.value = "You are typing";
+//     clearTimeout(debounce);
+//     debounce = setTimeout(() => {
+//         typing.value = null;
+//         message.value = event.target.value;
+//     }, 600);
+// };
 </script>

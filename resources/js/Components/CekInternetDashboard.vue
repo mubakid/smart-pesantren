@@ -13,7 +13,10 @@
                 >
                 <span v-else><i class="bx bx-wifi"></i></span>
             </div>
-            <span class="text-secondary me-3 ms-2" v-if="onLine"
+            <span
+                class="text-secondary me-3 ms-2"
+                v-if="onLine"
+                @click="bukaLink"
                 >v3.0 | BakidDev © 2022
             </span>
         </div>
@@ -37,6 +40,9 @@ export default {
         updateOnlineStatus(e) {
             const { type } = e;
             this.onLine = type === "online";
+        },
+        bukaLink() {
+            window.open("https://instagram.com/caakmalik", "_blank");
         },
     },
     watch: {

@@ -48,6 +48,10 @@ class HandleInertiaRequests extends Middleware
         $role = $user ? $user->roles[0]->name : 'tidak ada';
 
         return array_merge(parent::share($request), [
+            'flash' => [
+                'message' => fn () => $request->session()->get('message'),
+                'gagal' => fn () => $request->session()->get('gagal'),
+            ],
             'tgl_hijriah' => $tgl_hijriah,
             'tgl_masehi' => $tgl_masehi->translatedFormat('l, d M Y |'),
             'user' => $user,

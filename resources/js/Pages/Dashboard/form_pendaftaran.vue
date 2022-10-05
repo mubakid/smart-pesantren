@@ -5,6 +5,7 @@
                 <h4 @click="getProvinsi">Form Pendaftaran Santri Baru</h4>
                 <hr />
             </div>
+            <input type="text" v-model="form.jenis_kelamin" />
             <form @submit.prevent="handleSubmit2">
                 <div class="card p-3">
                     <div class="row my-4">
@@ -507,6 +508,7 @@ import { Inertia } from "@inertiajs/inertia";
 import Datepicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 
+const kata = ref("");
 let isSending = ref(false);
 let family = ref(false);
 let wali = ref(false);
@@ -612,7 +614,7 @@ const handleSubmit2 = () => {
     });
     setTimeout(() => {
         isSending.value = false;
-    }, 3000);
+    }, 1500);
 };
 const addFamilyHandle = () => {
     family.value = !family.value;

@@ -169,7 +169,7 @@
                                     :href="route('logout')"
                                     method="post"
                                     ><i class="bx bx-log-out-circle"></i
-                                    ><span>Logout</span></Link
+                                    ><span>Keluar</span></Link
                                 >
                             </li>
                         </ul>

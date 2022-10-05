@@ -12,7 +12,15 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-10 col-xl-7 mx-auto">
-                                <h1 class="display-6">Login</h1>
+                                <div class="d-flex justify-content-start">
+                                    <h1 class="display-6 me-3">Login</h1>
+                                    <SelfBuildingSquareSpinner
+                                        v-if="isSending"
+                                        :animation-duration="2000"
+                                        :size="20"
+                                        :color="'green'"
+                                    />
+                                </div>
                                 <p class="text-muted mb-4">Silahkan Masuk</p>
                                 <form @submit.prevent="handleSubmit">
                                     <div class="mb-3 text-center">
@@ -45,9 +53,11 @@
                                         <button
                                             type="submit"
                                             class="btn btn-success btn-block text-uppercase mb-2 rounded-pill shadow-sm"
+                                            :disabled="isSending"
                                         >
                                             Masuk
                                         </button>
+
                                         <br />
                                         <!-- INI TAMPIL DI MOBILE-->
                                         <div
@@ -94,15 +104,24 @@
 import { reactive } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
 import { Inertia } from "@inertiajs/inertia";
+import { SelfBuildingSquareSpinner } from "epic-spinners";
+import "@vuepic/vue-datepicker/dist/main.css";
+import { ref } from "vue";
+
 const props = defineProps({
     errors: Object,
 });
+let isSending = ref(false);
 const form = reactive({
     email: "",
     password: "",
 });
 const handleSubmit = () => {
+    isSending.value = true;
     Inertia.post(route("login"), form);
+    setTimeout(() => {
+        isSending.value = false;
+    }, 2000);
 };
 </script>
 <style>

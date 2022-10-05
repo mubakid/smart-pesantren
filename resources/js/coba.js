@@ -85,7 +85,7 @@ let hobi = [
     "jalan-jalan",
     "lainnya",
 ];
-// Object.assign({}, ["a", "b", "c"]);
+
 const dataPilihan = {
     cita: cita,
     hobi: hobi,

@@ -3,10 +3,11 @@
     <nav
         class="navbar navbar-expand-lg navbar-light bg-light fixed-bottom"
     ></nav>
-    <div class="container">
-        <div class="pricing-table">
+    <div class="container text-center">
+        <div class="pricing-table mt-4">
             <h6 class="mb-0 text-uppercase">Pilih Metode Pembayaran</h6>
             <hr />
+            <br />
             <div class="row row-cols-1 row-cols-lg-3">
                 <div class="col">
                     <div class="card mb-5 mb-lg-0">

@@ -31,7 +31,6 @@ class StudentController extends Controller
             $data['user_id'] = $user->id;
             $data['nis'] = IdGenerator::generate(['table' => 'students', 'field' => 'nis',  'length' => 8, 'prefix' => date('y')]);
             $student = Student::create($data);
-
             $family = new Family;
             $family->student_id = $student->id;
             $family->a_nik = $request->a_nik;

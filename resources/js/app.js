@@ -4,17 +4,17 @@ import { createInertiaApp } from "@inertiajs/inertia-vue3";
 
 // css
 import "../../public/assets/images/favicon.png";
-// import "../../public/assets/plugins/simplebar/css/simplebar.css";
+import "../../public/assets/plugins/simplebar/css/simplebar.css";
 // import "../../public/assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css";
-// import "../../public/assets/plugins/metismenu/css/metisMenu.min.css";
+import "../../public/assets/plugins/metismenu/css/metisMenu.min.css";
 import "../../public/assets/css/pace.min.css";
 import "../../public/assets/js/pace.min.js";
 import "../../public/assets/css/bootstrap.min.css";
 import "../../public/assets/css/bootstrap-extended.css";
 import "../../public/assets/css/app.css";
 import "../../public/assets/css/icons.css";
-// import "../../public/assets/css/dark-theme.css";
-// import "../../public/assets/css/semi-dark.css";
+import "../../public/assets/css/dark-theme.css";
+import "../../public/assets/css/semi-dark.css";
 import "../../public/assets/css/header-colors.css";
 
 // js

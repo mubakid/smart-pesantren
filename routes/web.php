@@ -29,17 +29,22 @@ Route::get('/try', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::name('admin.')->group(function () {
-    Route::group(['middleware' => ['role:admin']], function () {
-        Route::resource('santri', SantriController::class);
-    });
-});
 Route::get('/santri/biodata', [StudentController::class, 'biodata'])->name('biodata');
+
 Route::resource('students', StudentController::class);
+
 Route::group(['middleware' => ['role:santri_baru']], function () {
     Route::get('/santri/registrasi-lembaga', [StudentController::class, 'regLembaga'])->name('santri.reg-lembaga');
     Route::post('/santri/registrasi-lembaga', [StudentController::class, 'storeLembaga'])->name('santri.reg-lembaga');
     Route::get('/santri/upload-foto', [StudentController::class, 'uploadFoto'])->name('santri.upload-foto');
     Route::post('/santri/upload-foto', [StudentController::class, 'storeFoto'])->name('santri.store-foto');
     Route::get('/santri/pilih-metode-pembayaran', [StudentController::class, 'pilihMetodePembayaran'])->name('santri.pilih-metode-pembayaran');
+});
+
+Route::name('admin.')->group(function () {
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::post('/update-foto/{student}', [SantriController::class, 'updateFoto'])->name('santri.update-foto');
+        Route::put('/update-ortu/{id}', [SantriController::class, 'updateOrtu'])->name('santri.update-ortu');
+        Route::resource('santri', SantriController::class);
+    });
 });

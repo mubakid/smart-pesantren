@@ -1,7 +1,8 @@
 <template>
     <AppLayout>
         <Alert />
-        <h1>{{}}</h1>
+        <SweetAlert />
+        <!-- <button @click="alertDisplay()"></button> -->
         <div class="card p-1 text-capitalize">
             <div class="row">
                 <div class="col my-1">
@@ -169,10 +170,9 @@
 import { defineProps, ref, watch } from "vue";
 import AppLayout from "../../Shared/AppLayout.vue";
 import Alert from "../../Components/Alert.vue";
+import SweetAlert from "../../Components/SweetAlert.vue";
 import { Inertia } from "@inertiajs/inertia";
-// let message = ref();
-// let typing = ref();
-// let debounce = ref();
+
 const props = defineProps({
     students: Object,
     tags: Object,
@@ -181,20 +181,6 @@ const props = defineProps({
 
 const search = ref(props.filters.search);
 const perPage = ref(props.filters.perPage);
-
-// watch(search, (value) => {
-//     Inertia.get(
-//         route("admin.santri.index"),
-//         {
-//             search: value,
-//             perPage: perPage.value,
-//         },
-//         {
-//             preserveState: true,
-//             replace: true,
-//         }
-//     );
-// });
 
 const getTags = () => {
     Inertia.get(

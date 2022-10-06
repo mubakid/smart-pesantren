@@ -26,18 +26,27 @@
                         v-model="perPage"
                         @change="getTags"
                     >
+                        <option value="5">5</option>
                         <option value="15">15</option>
                         <option value="30">30</option>
                         <option value="50">50</option>
                         <option value="100">100</option>
                     </select>
                     <input
-                        v-model="search"
+                        @input="debounceSearch"
                         type="text"
                         class="form-control-sm ms-2"
                         placeholder="Cari nama..."
                         autofocus
                     />
+                    <small class="ms-2">{{ typing }}</small>
+                    <!-- <input
+                        v-model="search"
+                        type="text"
+                        class="form-control-sm ms-2"
+                        placeholder="Cari nama..."
+                        autofocus
+                    /> -->
                 </div>
                 <div class="dropdown">
                     <button
@@ -78,7 +87,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="s in students">
+                    <tr v-for="s in students.data" :key="s.id">
                         <td>{{ s.nama }}</td>
                         <td>{{ s.nis }}</td>
                         <td>{{ s.jenis_kelamin }}</td>
@@ -139,6 +148,20 @@
                     </tr>
                 </tbody>
             </table>
+            <tr>
+                <div class="d-md-flex justify-content-end">
+                    <template v-for="(link, key) in students.links" :key="key">
+                        <div class="" v-if="link.url === null"></div>
+                        <Link
+                            v-else
+                            :href="link.url"
+                            v-html="link.label"
+                            class="btn btn-sm btn-outline-secondary mx-1 my-1"
+                            :class="{ 'btn-primary': link.active }"
+                        ></Link>
+                    </template>
+                </div>
+            </tr>
         </div>
     </AppLayout>
 </template>
@@ -156,28 +179,14 @@ const props = defineProps({
     filters: Object,
 });
 
-const search = ref("");
-const perPage = ref(5);
+const search = ref(props.filters.search);
+const perPage = ref(props.filters.perPage);
 
-watch(search, (value) => {
-    Inertia.get(
-        route("admin.santri.index"),
-        {
-            search: value,
-            perPage: perPage.value,
-        },
-        {
-            preserveState: true,
-            replace: true,
-        }
-    );
-});
-
-// const getTags = () => {
+// watch(search, (value) => {
 //     Inertia.get(
 //         route("admin.santri.index"),
 //         {
-//             search: search.value,
+//             search: value,
 //             perPage: perPage.value,
 //         },
 //         {
@@ -185,15 +194,41 @@ watch(search, (value) => {
 //             replace: true,
 //         }
 //     );
-// };
+// });
 
-// const searchInput = (event) => {
-//     message.value = null;
-//     typing.value = "You are typing";
-//     clearTimeout(debounce);
-//     debounce = setTimeout(() => {
-//         typing.value = null;
-//         message.value = event.target.value;
-//     }, 600);
-// };
+const getTags = () => {
+    Inertia.get(
+        route("admin.santri.index"),
+        {
+            search: search.value,
+            perPage: perPage.value,
+        },
+        {
+            preserveState: true,
+            replace: true,
+        }
+    );
+};
+
+// coba pakai debounce, mohon koreksi jika ada best practice nya
+let typing = ref("");
+let debounce = ref("");
+const debounceSearch = (event) => {
+    typing.value = "mengetik...";
+    clearTimeout(debounce);
+    debounce = setTimeout(() => {
+        typing.value = null;
+        Inertia.get(
+            route("admin.santri.index"),
+            {
+                search: event.target.value,
+                perPage: perPage.value,
+            },
+            {
+                preserveState: true,
+                replace: true,
+            }
+        );
+    }, 600);
+};
 </script>

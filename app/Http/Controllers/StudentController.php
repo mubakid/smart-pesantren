@@ -20,7 +20,8 @@ class StudentController extends Controller
 {
     public function biodata()
     {
-        $student = Student::with('dormitory', 'family', 'madinEducation', 'formalEducation')->where('user_id', Auth::user()->id)->first();
+        $student = Student::with('dormitory', 'family', 'madinEducation', 'formalEducation')
+            ->where('user_id', Auth::user()->id)->first();
         return inertia('Santri/Biodata', compact('student'));
     }
     public function store(StoreStudentRequest $request)

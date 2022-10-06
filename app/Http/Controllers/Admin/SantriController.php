@@ -12,14 +12,22 @@ use App\Models\MadinPresensi;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class SantriController extends Controller
 {
     public function index(Request $req)
     {
-        // dd($req->all());
-        $students = Student::with('madinEducation', 'formalEducation')->get();
-        return inertia('Santri/Index', compact('students'));
+        $perPg = $req->input('perPage') ?: 5;
+        return Inertia::render('Santri/Index', [
+            'students' => Student::query()
+                ->when($req->input('search'), function ($query, $search) {
+                    $query->where('nama', 'like', "%{$search}%");
+                })
+                ->paginate($perPg)
+                ->withQueryString(),
+            'filters' => $req->only(['search', 'perPage'])
+        ]);
     }
 
     public function edit(Student $santri)

@@ -53,7 +53,6 @@
                                         <button
                                             type="submit"
                                             class="btn btn-success btn-block text-uppercase mb-2 rounded-pill shadow-sm"
-                                            :disabled="isSending"
                                         >
                                             Masuk
                                         </button>
@@ -107,21 +106,27 @@ import { Inertia } from "@inertiajs/inertia";
 import { SelfBuildingSquareSpinner } from "epic-spinners";
 import "@vuepic/vue-datepicker/dist/main.css";
 import { ref } from "vue";
-
+import { useForm } from "@inertiajs/inertia-vue3";
 const props = defineProps({
     errors: Object,
 });
 let isSending = ref(false);
-const form = reactive({
+const form = useForm({
     email: "",
     password: "",
 });
 const handleSubmit = () => {
     isSending.value = true;
-    Inertia.post(route("login"), form);
-    setTimeout(() => {
-        isSending.value = false;
-    }, 2000);
+    // Inertia.post(route("login"), form);
+    // setTimeout(() => {
+    //     isSending.value = false;
+    // }, 2000);
+    form.post(route("login"), {
+        preserveScroll: true,
+        onSuccess: () => {
+            isSending.value = false;
+        },
+    });
 };
 </script>
 <style>

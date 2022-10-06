@@ -28,6 +28,7 @@
         "jquery": "^3.6.1",
         "mdb-vue-ui-kit": "^3.0.0",
         "metismenu": "^3.0.7",
+        "sweetalert2": "^11.4.37",
         "v-offline": "^2.3.0",
         "vue": "^3.2.36",
         "vue-internet-checker": "^2.0.1",

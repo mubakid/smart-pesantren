@@ -63,7 +63,6 @@ class SantriController extends Controller
             $santri_saved = $student->update([
                 'foto' => $nama_file_santri
             ]);
-            return Redirect::route('admin.santri.index')->with('message', $pesan);
         }
         if ($req->hasFile('wali')) {
             $req->validate([
@@ -75,8 +74,7 @@ class SantriController extends Controller
             $wali_saved = $student->update([
                 'foto_wali' => $nama_file_wali
             ]);
-            return Redirect::route('admin.santri.index')->with('message', $pesan);
         }
-        return back();
+        return Redirect::route('admin.santri.index')->with('message', $pesan);
     }
 }

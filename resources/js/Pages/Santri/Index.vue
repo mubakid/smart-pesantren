@@ -34,20 +34,20 @@
                         <option value="100">100</option>
                     </select>
                     <input
-                        @input="debounceSearch"
+                        @keyup="debounceSearch"
                         type="text"
                         class="form-control-sm ms-2"
                         placeholder="Cari nama..."
+                        v-model="search"
                         autofocus
                     />
-                    <small class="ms-2">{{ typing }}</small>
-                    <!-- <input
-                        v-model="search"
-                        type="text"
-                        class="form-control-sm ms-2"
-                        placeholder="Cari nama..."
-                        autofocus
-                    /> -->
+                    <div
+                        v-if="isTyping"
+                        class="spinner-border spinner-border-sm ms-2"
+                        role="status"
+                    >
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
                 <div class="dropdown">
                     <button
@@ -149,20 +149,7 @@
                     </tr>
                 </tbody>
             </table>
-            <tr>
-                <div class="d-md-flex justify-content-end">
-                    <template v-for="(link, key) in students.links" :key="key">
-                        <div class="" v-if="link.url === null"></div>
-                        <Link
-                            v-else
-                            :href="link.url"
-                            v-html="link.label"
-                            class="btn btn-sm btn-outline-secondary mx-1 my-1"
-                            :class="{ 'btn-primary': link.active }"
-                        ></Link>
-                    </template>
-                </div>
-            </tr>
+            <Pagination :links="students" />
         </div>
     </AppLayout>
 </template>
@@ -172,6 +159,7 @@ import AppLayout from "../../Shared/AppLayout.vue";
 import Alert from "../../Components/Alert.vue";
 import SweetAlert from "../../Components/SweetAlert.vue";
 import { Inertia } from "@inertiajs/inertia";
+import Pagination from "../../Components/SimplePagination.vue";
 
 const props = defineProps({
     students: Object,
@@ -181,7 +169,7 @@ const props = defineProps({
 
 const search = ref(props.filters.search);
 const perPage = ref(props.filters.perPage);
-
+let isTyping = ref(false);
 const getTags = () => {
     Inertia.get(
         route("admin.santri.index"),
@@ -197,13 +185,12 @@ const getTags = () => {
 };
 
 // coba pakai debounce, mohon koreksi jika ada best practice nya
-let typing = ref("");
 let debounce = ref("");
 const debounceSearch = (event) => {
-    typing.value = "mengetik...";
-    clearTimeout(debounce);
+    isTyping.value = true;
+    // clearTimeout(debounce);
     debounce = setTimeout(() => {
-        typing.value = null;
+        isTyping.value = false;
         Inertia.get(
             route("admin.santri.index"),
             {

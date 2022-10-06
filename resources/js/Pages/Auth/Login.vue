@@ -14,8 +14,15 @@
                             <div class="col-lg-10 col-xl-7 mx-auto">
                                 <div class="d-flex justify-content-start">
                                     <h1 class="display-6 me-3">Login</h1>
+                                    <progress
+                                        v-if="form.progress"
+                                        :value="form.progress.percentage"
+                                        max="100"
+                                    >
+                                        {{ form.progress.percentage }}%
+                                    </progress>
                                     <SelfBuildingSquareSpinner
-                                        v-if="isSending"
+                                        v-if="form.processing"
                                         :animation-duration="2000"
                                         :size="20"
                                         :color="'green'"
@@ -52,6 +59,7 @@
                                     <div class="d-grid gap-2 mt-2">
                                         <button
                                             type="submit"
+                                            :disabled="form.processing"
                                             class="btn btn-success btn-block text-uppercase mb-2 rounded-pill shadow-sm"
                                         >
                                             Masuk
@@ -117,10 +125,6 @@ const form = useForm({
 });
 const handleSubmit = () => {
     isSending.value = true;
-    // Inertia.post(route("login"), form);
-    // setTimeout(() => {
-    //     isSending.value = false;
-    // }, 2000);
     form.post(route("login"), {
         preserveScroll: true,
         onSuccess: () => {

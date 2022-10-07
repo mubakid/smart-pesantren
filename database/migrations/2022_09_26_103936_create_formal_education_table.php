@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('formal_education', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('full_name')->nullable();
             $table->string('ket')->nullable();
             $table->timestamps();
         });

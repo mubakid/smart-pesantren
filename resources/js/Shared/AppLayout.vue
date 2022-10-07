@@ -38,7 +38,7 @@
                         <i class="bx bx-menu"></i>
                     </div>
                     <div class="d-none d-md-block">
-                        <div class="text-light">
+                        <div class="text-light" v-if="$page.props.year">
                             {{
                                 $page.props.tgl_masehi +
                                 " " +

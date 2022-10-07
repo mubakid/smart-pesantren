@@ -40,9 +40,9 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         $tgl_masehi = Carbon::now();
-        $get = 'http://api.aladhan.com/v1/gToH?date=' . $tgl_masehi->format('d-m-Y');
-        $a = Http::get($get);
-        $tgl_hijriah = $a['data']['hijri'];
+        // $get = 'http://api.aladhan.com/v1/gToH?date=' . $tgl_masehi->format('d-m-Y');
+        // $a = Http::get($get);
+        // $tgl_hijriah = $a['data']['hijri'];
         $user = Auth::user();
 
         $role = $user ? $user->roles[0]->name : 'tidak ada';
@@ -52,7 +52,7 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message'),
                 'gagal' => fn () => $request->session()->get('gagal'),
             ],
-            'tgl_hijriah' => $tgl_hijriah,
+            // 'tgl_hijriah' => $tgl_hijriah ?: 'gadasinyal',
             'tgl_masehi' => $tgl_masehi->translatedFormat('l, d M Y |'),
             'user' => $user,
             'role' => $role

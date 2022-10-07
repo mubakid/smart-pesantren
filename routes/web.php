@@ -1,12 +1,14 @@
 <?php
 
-use App\Http\Controllers\Admin\SantriController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\StudentController;
 use Haruncpi\LaravelIdGenerator\IdGenerator;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Tamu\TamuController;
+use App\Http\Controllers\Admin\SantriController;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +21,7 @@ use App\Http\Controllers\Tamu\TamuController;
 |
 */
 
-Route::get('/', function () {
-    return inertia('Auth/Login');
-    // return inertia('Dashboard/tamu2');
-});
+Route::get('/', [LoginController::class, 'showLoginForm']);
 Route::get('/try', function () {
 });
 

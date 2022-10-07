@@ -38,17 +38,19 @@
                         <i class="bx bx-menu"></i>
                     </div>
                     <div class="d-none d-md-block">
-                        <div class="text-light" v-if="$page.props.year">
-                            {{
-                                $page.props.tgl_masehi +
-                                " " +
-                                $page.props.tgl_hijriah.day +
-                                " " +
-                                $page.props.tgl_hijriah.month.en +
-                                " " +
-                                $page.props.tgl_hijriah.year +
-                                " H"
-                            }}
+                        <div class="text-light">
+                            <span> {{ $page.props.tgl_masehi }}</span>
+                            <span v-if="$page.props.tgl_hijriah">
+                                {{
+                                    " | " +
+                                    $page.props.tgl_hijriah.day +
+                                    " " +
+                                    $page.props.tgl_hijriah.month.en +
+                                    " " +
+                                    $page.props.tgl_hijriah.year +
+                                    " H"
+                                }}
+                            </span>
                         </div>
                     </div>
                     <div class="top-menu ms-auto">

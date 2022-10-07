@@ -37,14 +37,33 @@ class HandleInertiaRequests extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+    function is_connected()
+    {
+        $connected = @fsockopen("www.google.com", 80);
+        //website, port  (try 80 or 443)
+        if ($connected) {
+            $is_conn = true; //action when connected
+            fclose($connected);
+        } else {
+            $is_conn = false; //action in connection failure
+        }
+        return $is_conn;
+    }
+    public function getHijri()
+    {
+        if ($this->is_connected()) {
+            $tgl_masehi = Carbon::now();
+            $get = 'http://api.aladhan.com/v1/gToH?date=' . $tgl_masehi->format('d-m-Y');
+            $a = Http::get($get);
+            return $tgl_hijriah = $a['data']['hijri'];
+        } else {
+            return $tgl_hijriah = false;
+        }
+    }
     public function share(Request $request): array
     {
         $tgl_masehi = Carbon::now();
-        // $get = 'http://api.aladhan.com/v1/gToH?date=' . $tgl_masehi->format('d-m-Y');
-        // $a = Http::get($get);
-        // $tgl_hijriah = $a['data']['hijri'];
         $user = Auth::user();
-
         $role = $user ? $user->roles[0]->name : 'tidak ada';
 
         return array_merge(parent::share($request), [
@@ -52,8 +71,8 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message'),
                 'gagal' => fn () => $request->session()->get('gagal'),
             ],
-            // 'tgl_hijriah' => $tgl_hijriah ?: 'gadasinyal',
-            'tgl_masehi' => $tgl_masehi->translatedFormat('l, d M Y |'),
+            'tgl_hijriah' => $this->getHijri(),
+            'tgl_masehi' => $tgl_masehi->translatedFormat('l, d M Y'),
             'user' => $user,
             'role' => $role
         ]);

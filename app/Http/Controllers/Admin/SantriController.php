@@ -2,34 +2,73 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\UpdateStudentRequest;
-use App\Models\Dormitory;
-use App\Models\Family;
-use App\Models\FormalEducation;
-use App\Models\MadinEducation;
-use App\Models\MadinPresensi;
-use App\Models\Student;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
+use Carbon\Carbon;
 use Inertia\Inertia;
+use App\Models\Family;
+use App\Models\Student;
+use App\Models\Dormitory;
+use Illuminate\Http\Request;
+use App\Models\MadinPresensi;
+use App\Models\MadinEducation;
+use App\Models\FormalEducation;
+use function PHPSTORM_META\map;
+use Illuminate\Support\Facades\URL;
+use App\Http\Controllers\Controller;
+
+use Illuminate\Support\Facades\Redirect;
+use App\Http\Requests\UpdateStudentRequest;
 
 class SantriController extends Controller
 {
     public function index(Request $req)
     {
-        $perPg = $req->input('perPage') ?: 5;
+
+        $perPage = $req->input('perPage') ?: 5;
         return Inertia::render('Santri/Index', [
             'students' => Student::query()
                 ->when($req->input('search'), function ($query, $search) {
                     $query->where('nama', 'like', "%{$search}%");
                 })
-                ->paginate($perPg)
-                ->withQueryString(),
-            'filters' => $req->only(['search', 'perPage'])
+                ->paginate($perPage)
+                ->withQueryString()
+                ->through(function ($item) {
+                    return [
+                        'id' => $item->id,
+                        'nama' => $item->nama,
+                        'nis' => $item->nis,
+                        'jenis_kelamin' => $item->jenis_kelamin,
+                        'usia' => $item->age(),
+                        'daerah' => $item->dormitory->name . $item->room,
+                        'madin' => $item->madinEducation->name,
+                        'formal' => $item->formalEducation->name,
+                        'showUrl' => URL::route('admin.santri.show', $item->id),
+                        'editUrl' => URL::route('admin.santri.edit', $item->id),
+                    ];
+                }),
+            'filters' => $req->only(
+                ['search', 'perPage'],
+
+            ),
+            'perHal' => $perPage,
+            'dormitories' => Dormitory::query()
+                ->get(['id', 'name', 'gender'])
+                ->map(function ($asr) {
+                    return [
+                        'id' => $asr->id,
+                        'name' => $asr->name . ' (' . $asr->gender . ')',
+                    ];
+                })
+                ->toArray(),
+            'madin_educations' => MadinEducation::all(),
+            'formal_educations' => FormalEducation::all(),
         ]);
     }
-
+    public function show(Student $santri)
+    {
+        $santri->load('dormitory', 'madinEducation', 'formalEducation');
+        $showMode = true;
+        return Inertia::render('Santri/Edit', compact('santri', 'showMode'));
+    }
     public function edit(Student $santri)
     {
         $daerah = Dormitory::where('gender', $santri->jenis_kelamin)->get();
@@ -40,6 +79,7 @@ class SantriController extends Controller
     }
     public function update(Student $santri, UpdateStudentRequest $req)
     {
+        dd($req->all());
         $input = $req->except(['family']);
         $santri->update($input);
         return back()->with('message', 'Data Pribadi Berhasil di edit');
@@ -49,6 +89,12 @@ class SantriController extends Controller
         $input = $req->except(['created_at', 'updated_at']);
         $family =  Family::where('student_id', $id)->update($input);
         return back()->with('message', 'Data Orang tua Berhasil di edit');
+    }
+    public function updatePendidikan(Request $req, int $id)
+    {
+        $input = $req->except(['created_at', 'updated_at']);
+        Student::find($id)->update($input);
+        return back()->with('message', 'Data Pendidikan/Daerah Berhasil di edit');
     }
     public function updateFoto(Student $student, Request $req)
     {

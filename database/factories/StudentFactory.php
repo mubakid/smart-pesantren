@@ -22,7 +22,7 @@ class StudentFactory extends Factory
             'user_id' => User::factory(),
             'nik' => $this->faker->word(),
             'nis' => rand(222222, 999999),
-            'tanggal_lahir' => $this->faker->word(),
+            'tanggal_lahir' => $this->faker->date(),
             'tempat_lahir' => $this->faker->word(),
             'jenis_kelamin' => $this->faker->randomElement(['L', 'P']),
 
@@ -35,7 +35,7 @@ class StudentFactory extends Factory
             'provinsi' => $this->faker->city(),
             'kode_pos' => $this->faker->name(),
             'madin_education_id' => rand(1, 9),
-            'formal_education_id' => rand(1, 9),
+            'formal_education_id' => rand(1, 6),
             'dormitory_id' => rand(1, 9),
             'room' => rand(1, 9),
         ];

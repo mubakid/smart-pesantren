@@ -31,6 +31,7 @@
         "sweetalert2": "^11.4.37",
         "v-offline": "^2.3.0",
         "vue": "^3.2.36",
+        "vue-confirm-dialog": "^1.1.0",
         "vue-internet-checker": "^2.0.1",
         "vue-loading-button": "^0.2.0",
         "vue-loading-overlay": "^5.0.3",

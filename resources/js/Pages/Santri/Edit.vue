@@ -1,10 +1,23 @@
 <template>
     <AppLayout>
         <div class="col">
-            <div class="d-flex justify-content-start align-items-center">
-                <BackButton />
-                <h6 class="mb-0 text-uppercase">Edit Data</h6>
-                <hr />
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <BackButton />
+                    <h6 class="mb-0 text-uppercase" v-if="!showMode">
+                        Edit Data
+                    </h6>
+                    <h6 class="mb-0 text-uppercase" v-else>Detail</h6>
+                    <hr />
+                </div>
+                <div>
+                    <Link
+                        as="button"
+                        :href="route('admin.santri.edit', santri.id)"
+                        class="btn btn-primary btn-sm"
+                        >Edit</Link
+                    >
+                </div>
             </div>
             <Alert />
             <div class="card">
@@ -128,6 +141,7 @@
                                                         @change="
                                                             showPreview($event)
                                                         "
+                                                        :hidden="showMode"
                                                     />
                                                 </div>
                                             </div>
@@ -177,6 +191,7 @@
                                                                 $event
                                                             )
                                                         "
+                                                        :hidden="showMode"
                                                     />
                                                 </div>
                                             </div>
@@ -184,6 +199,7 @@
                                     </div>
                                 </div>
                                 <button
+                                    :hidden="showMode"
                                     type="submit"
                                     class="btn btn-primary radius-30"
                                 >
@@ -204,6 +220,7 @@
                                         >
                                             <label for="">nama</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -220,6 +237,7 @@
                                         >
                                             <label for="">nik</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -233,6 +251,7 @@
                                         >
                                             <label for="">nis</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -246,6 +265,7 @@
                                         >
                                             <label for="">hp</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -259,6 +279,7 @@
                                         >
                                             <label for="">tempat_lahir</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -273,6 +294,7 @@
                                         >
                                             <label for="">tanggal lahir</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -287,6 +309,7 @@
                                         >
                                             <label for="">jenis kelamin</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -301,6 +324,7 @@
                                         >
                                             <label for="">alamat</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -314,6 +338,7 @@
                                         >
                                             <label for="">rt rw</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -327,6 +352,7 @@
                                         >
                                             <label for="">desa</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -340,6 +366,7 @@
                                         >
                                             <label for="">kecamatan</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -354,6 +381,7 @@
                                         >
                                             <label for="">kota</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -367,6 +395,7 @@
                                         >
                                             <label for="">provinsi</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -381,6 +410,7 @@
                                         >
                                             <label for="">kode pos</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -395,6 +425,7 @@
                                         >
                                             <label for="">agama</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -408,6 +439,7 @@
                                         >
                                             <label for="">hobi</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -423,6 +455,7 @@
                                         >
                                             <label for="">cita-cita</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -437,6 +470,7 @@
                                         >
                                             <label for="">kewarganegaraan</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -452,6 +486,7 @@
                                             <label for=""
                                                 >kebutuhan khusus</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -466,6 +501,7 @@
                                         >
                                             <label for="">status rumah</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -480,6 +516,7 @@
                                         >
                                             <label for="">status mukim</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -494,6 +531,7 @@
                                         >
                                             <label for="">sekolah asal</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -509,6 +547,7 @@
                                             <label for=""
                                                 >alamat sekolah asal</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -526,6 +565,7 @@
                                             <label for=""
                                                 >npsn sekolah asal</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -541,6 +581,7 @@
                                             <label for=""
                                                 >nsm sekolah asal</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -555,6 +596,7 @@
                                         >
                                             <label for="">no ijazah</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -570,6 +612,7 @@
                                             <label for=""
                                                 >no ujian nasional</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -584,6 +627,7 @@
                                         >
                                             <label for="">nism</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -597,6 +641,7 @@
                                         >
                                             <label for="">kip</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -610,6 +655,7 @@
                                         >
                                             <label for="">pkh</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -623,6 +669,7 @@
                                         >
                                             <label for="">kks</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -636,6 +683,7 @@
                                         >
                                             <label for="">nomor kk</label
                                             ><input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -647,6 +695,7 @@
                                     </div>
                                 </div>
                                 <button
+                                    :hidden="showMode"
                                     type="submit"
                                     class="btn btn-primary radius-30 mt-4"
                                 >
@@ -667,6 +716,7 @@
                                         >
                                             <label for="">nik ayah</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -680,6 +730,7 @@
                                         >
                                             <label for="">nama ayah</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -693,6 +744,7 @@
                                         >
                                             <label for="">pekerjaan ayah</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -709,6 +761,7 @@
                                                 >pendidikan ayah</label
                                             >
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -723,6 +776,7 @@
                                         >
                                             <label for="">phone ayah</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -739,6 +793,7 @@
                                                 >penghasilan ayah</label
                                             >
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -755,6 +810,7 @@
                                         >
                                             <label for="">nik ibu</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -768,6 +824,7 @@
                                         >
                                             <label for="">nama ibu</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -781,6 +838,7 @@
                                         >
                                             <label for="">pekerjaan ibu</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -795,6 +853,7 @@
                                         >
                                             <label for="">pendidikan ibu</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -809,6 +868,7 @@
                                         >
                                             <label for="">phone ibu</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -828,6 +888,7 @@
                                         >
                                             <label for="">hubungan wali</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -844,6 +905,7 @@
                                         >
                                             <label for="">nik wali</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -857,6 +919,7 @@
                                         >
                                             <label for="">nama wali</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -870,6 +933,7 @@
                                         >
                                             <label for="">pekerjaan wali</label>
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -886,6 +950,7 @@
                                                 >penghasilan wali</label
                                             >
                                             <input
+                                                :disabled="showMode"
                                                 type="text"
                                                 class="form-control"
                                                 :class="{
@@ -898,6 +963,7 @@
                                     </div>
                                 </div>
                                 <button
+                                    :hidden="showMode"
                                     type="submit"
                                     class="btn radius-30 btn-primary"
                                 >
@@ -910,7 +976,10 @@
                             id="pendidikan"
                             role="tabpanel"
                         >
-                            <form @submit="handleSubmitPendidikan">
+                            <form
+                                @submit.prevent="handleSubmitPendidikan"
+                                v-if="!showMode"
+                            >
                                 <div class="form-group mb-3">
                                     <label>Daerah</label>
                                     <v-select
@@ -918,6 +987,16 @@
                                         v-model="selectedDaerah"
                                         :reduce="(pendidikan) => pendidikan.id"
                                         :options="formPendidikan.daerah"
+                                        :disabled="showMode"
+                                    />
+                                </div>
+
+                                <div class="form-group mb-3">
+                                    <label>Asrama</label>
+                                    <input
+                                        type="number"
+                                        v-model="form.room"
+                                        class="form-control"
                                     />
                                 </div>
 
@@ -928,6 +1007,7 @@
                                         v-model="selectedMadin"
                                         :reduce="(pendidikan) => pendidikan.id"
                                         :options="formPendidikan.madin"
+                                        :disabled="showMode"
                                     />
                                 </div>
                                 <div class="form-group mb-3">
@@ -937,9 +1017,29 @@
                                         v-model="selectedFormal"
                                         :reduce="(pendidikan) => pendidikan.id"
                                         :options="formPendidikan.formal"
+                                        :disabled="showMode"
                                     />
                                 </div>
+                                <button
+                                    :hidden="showMode"
+                                    type="submit"
+                                    class="btn radius-30 btn-primary"
+                                >
+                                    Update Pendidikan/Asrama
+                                </button>
                             </form>
+                            <div class="" v-else>
+                                <h4>
+                                    Madin : {{ santri.madin_education.name }}
+                                </h4>
+                                <h4>
+                                    Formal : {{ santri.formal_education.name }}
+                                </h4>
+                                <h4>
+                                    Daerah :
+                                    {{ santri.dormitory.name + santri.room }}
+                                </h4>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -960,6 +1060,7 @@ let selectedDaerah = ref(props.santri.dormitory_id);
 let image = ref("");
 let imageWali = ref("");
 const props = defineProps({
+    showMode: Boolean,
     errors: Object,
     santri: Object,
     family: Object,
@@ -967,6 +1068,7 @@ const props = defineProps({
     formal: Object,
     daerah: Object,
 });
+
 const form = useForm(props.santri);
 const formOrtu = useForm(props.family);
 
@@ -988,7 +1090,15 @@ const handleSubmitOrtu = () => {
     formOrtu.put(route("admin.santri.update-ortu", props.santri.id));
 };
 
-const handleSubmitPendidikan = () => {};
+const handleSubmitPendidikan = () => {
+    console.log("A");
+    Inertia.put(route("admin.santri.update-pendidikan", props.santri.id), {
+        madin_education_id: selectedMadin.value,
+        formal_education_id: selectedFormal.value,
+        dormitory_id: selectedDaerah.value,
+        room: form.room,
+    });
+};
 
 const showPreview = (e) => {
     let files = e.target.files || e.dataTransfer.files;

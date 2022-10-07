@@ -8,31 +8,33 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class FormalEducationSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         DB::table('formal_education')->insert([
             [
-                'name' => 'MI (Madrasah Ibtidaiyah)',
+                'full_name' => 'Madrasah Ibtidaiyah',
+                'name' => 'MI ',
             ],
             [
-                'name' => 'MTs 1 (Madrasah Tsanawiyah)',
+                'full_name' => 'Madrasah Tsanawiyah 1',
+                'name' => 'MTs 1 ',
             ],
             [
-                'name' => 'MTs 2 (Madrasah Tsanawiyah)',
+                'full_name' => 'Madrasah Tsanawiyah 2',
+                'name' => 'MTs 2 ',
             ],
             [
-                'name' => 'MA 1 (Madrasah Aliyah 1)',
+                'full_name' => 'Madrasah Aliyah 1',
+                'name' => 'MA 1 ',
             ],
             [
-                'name' => 'MA 2 (Madrasah Aliyah 2)',
+                'full_name' => 'Madrasah Aliyah 2',
+                'name' => 'MA 2 ',
             ],
             [
-                'name' => 'STIS (Perguruan Tinggi)',
+                'full_name' => 'Perguruan Tinggi',
+                'name' => 'STIS ',
             ],
         ]);
     }

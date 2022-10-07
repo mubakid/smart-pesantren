@@ -45,6 +45,7 @@ Route::name('admin.')->group(function () {
     Route::group(['middleware' => ['role:admin']], function () {
         Route::post('/update-foto/{student}', [SantriController::class, 'updateFoto'])->name('santri.update-foto');
         Route::put('/update-ortu/{id}', [SantriController::class, 'updateOrtu'])->name('santri.update-ortu');
+        Route::put('/update-pendidikan/{id}', [SantriController::class, 'updatePendidikan'])->name('santri.update-pendidikan');
         Route::resource('santri', SantriController::class);
     });
 });

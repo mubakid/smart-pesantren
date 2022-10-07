@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Models\Family;
 use App\Models\Dormitory;
 use App\Models\MadinEducation;
@@ -78,5 +79,9 @@ class Student extends Model
     public function dormitory()
     {
         return $this->belongsTo(Dormitory::class);
+    }
+    public function age()
+    {
+        return Carbon::parse($this->attributes['tanggal_lahir'])->age;
     }
 }
